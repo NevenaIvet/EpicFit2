@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.epicfitproject.LogInActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Username"
+        android:textSize="20sp"
+        android:ems="10"
+        android:id="@+id/username_login"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:textSize="20sp"
+        android:id="@+id/password_login"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/username_login"
+        android:layout_alignLeft="@+id/username_login"
+        android:layout_alignStart="@+id/username_login" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/password_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="log In"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/button_login"
+            android:background="#f7eff5" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Register"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:id="@+id/button_register"
+            android:background="#f7eff5" />
+    </LinearLayout>
+
+</RelativeLayout>
+
