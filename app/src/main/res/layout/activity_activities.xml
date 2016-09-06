@@ -23,14 +23,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/button_upper_body"
-            android:background="@drawable/upperbodypic"
+            android:text="upper boddy"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/lowerbodypic"
+            android:text="lower body"
             android:id="@+id/button_lower_body"
             android:layout_gravity="center_horizontal" />
 
@@ -38,24 +38,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/cardiopic"
+            android:text="cardio"
             android:id="@+id/button_cardio"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
+            android:text="streching"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/streching"
-            android:id="@+id/button_hiit"
+
+            android:id="@+id/button_streching"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/hiitpic"
-            android:id="@+id/button_streching"
+            android:text="hiit"
+            android:id="@+id/button_hiit"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>
