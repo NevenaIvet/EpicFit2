@@ -3,12 +3,10 @@ package com.example.user.epicfitproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.user.epicfitproject.goal.GoalActivity;
 import com.example.user.epicfitproject.model.UsersManager;
 
 public class LogInActivity extends AppCompatActivity {
@@ -67,7 +65,7 @@ public class LogInActivity extends AppCompatActivity {
                 }
 
 
-                Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+                Intent intent = new Intent(LogInActivity.this, AthleteActivity.class);
                 intent.putExtra("LoggedUser", userN);
                 startActivity(intent);
 

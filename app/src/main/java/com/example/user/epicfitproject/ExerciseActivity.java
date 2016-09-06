@@ -1,5 +1,6 @@
 package com.example.user.epicfitproject;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.example.user.epicfitproject.exercise.Exercise;
 
 public class ExerciseActivity extends AppCompatActivity {
     private TextView heading;
@@ -37,6 +40,14 @@ public class ExerciseActivity extends AppCompatActivity {
         //moreText.setClickable(false);
         image= (ImageView) findViewById(R.id.image);
         add = (Button) findViewById(R.id.addButton);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExerciseActivity.this,AddExerciseProperties.class);
+                startActivity(intent);
+
+            }
+        });
         video = (VideoView) findViewById(R.id.video);
         String path = "https://www.youtube.com/watch?v=mF8xnWSA65k";
         Uri uri= Uri.parse(path);

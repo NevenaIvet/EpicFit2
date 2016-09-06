@@ -18,6 +18,7 @@ public class ListOFExercisesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListOFExercisesActivity.this,ExerciseActivity.class);
+                startActivity(intent);
             }
         });
     }

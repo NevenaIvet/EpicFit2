@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/athleteimage"
+                android:text="Profile"
                 android:id="@+id/button_profile_menu"
                 android:fontFeatureSettings="@string/app_name"/>
 
@@ -47,7 +47,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/activityimage"
+               android:text="Activities"
                 android:id="@+id/button_activities_menu" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/challengesimage"
+                android:text="Active goals"
                 android:id="@+id/button_chalenges_menu" />
         </LinearLayout>
 
@@ -73,7 +73,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/progressimageview"
+                android:text="Progress"
                 android:id="@+id/button_progress_menu" />
         </LinearLayout>
     </LinearLayout>

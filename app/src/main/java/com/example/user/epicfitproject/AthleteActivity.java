@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.example.user.epicfitproject.athlete.Athlete;
 
 public class AthleteActivity extends AppCompatActivity {
     private TextView heading;
@@ -32,19 +33,20 @@ public class AthleteActivity extends AppCompatActivity {
     private Switch metricSystemSwitch;
     private NumberPicker pickHeight;
     private NumberPicker pickWeight;
-
+    private Athlete athlete;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_athlete);
         heading = (TextView) findViewById(R.id.heading);
         heading.setFocusable(false);
         heading.setClickable(false);
 
         username = (TextView) findViewById(R.id.usernameText);
-        username.setText(getIntent().getStringExtra("LoggedUser").toString());
+        username.setText(getIntent().getStringExtra("LoggedUser"));
         username.setFocusable(false);
         username.setClickable(false);
 
@@ -102,9 +104,11 @@ public class AthleteActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    //ako sa cukati height i weight
-                    //vikam funkciqta koqto mi smqta bmi i zapisvam na tova pole
+                    //TODO fix BMI function and parseDouble
+
                     BMIinfo.setVisibility(View.VISIBLE);
+
+
                 }else{
                     BMIinfo.setVisibility(View.INVISIBLE);
                 }
@@ -127,9 +131,31 @@ public class AthleteActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AthleteActivity.this,ActivitiesActivity.class);
+                String nameAthlete  = username.getText().toString();
+                String gender ;
+                if(genderSwitch.isChecked()){
+                    gender="female";
+                }else{
+                    gender="male";
+                }
+             double weight=   pickWeight.getValue();
+                int height = pickHeight.getValue();
+
+                athlete = new Athlete(nameAthlete,R.drawable.user96,height,weight,gender);
+
+                Intent intent = new Intent(AthleteActivity.this,MainMenuActivity.class);
+                //intent.putExtra("athlete",athlete);
                 startActivity(intent);
             }
         });
+        addGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AthleteActivity.this, GoalActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }
