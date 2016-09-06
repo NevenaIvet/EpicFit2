@@ -3,10 +3,12 @@ package com.example.user.epicfitproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.user.epicfitproject.goal.GoalActivity;
 import com.example.user.epicfitproject.model.UsersManager;
 
 public class LogInActivity extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText password;
     private Button register;
     private Button login;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class LogInActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_login);
         register = (Button) findViewById(R.id.button_register);
         login = (Button) findViewById(R.id.button_login);
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
