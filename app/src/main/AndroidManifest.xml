@@ -20,13 +20,15 @@
         <activity android:name=".ActivitiesActivity" />
 
         <activity android:name=".goal.GoalActivity"></activity>
+
+
         <activity android:name=".AthleteActivity" />
         <activity android:name=".ExerciseActivity">
             <uses-permission android:name="android.permission.INTERNET" />
         </activity>
         <activity android:name=".Statistics" />
         <activity android:name=".ListOFExercisesActivity" />
->>>>>>> 18fc150735411468983e361db837480a1a23bf3c
+
     </application>
 
 </manifest>
