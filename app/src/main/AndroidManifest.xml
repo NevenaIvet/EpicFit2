@@ -18,9 +18,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".ActivitiesActivity" />
-<<<<<<< HEAD
+
         <activity android:name=".goal.GoalActivity"></activity>
-=======
         <activity android:name=".AthleteActivity" />
         <activity android:name=".ExerciseActivity">
             <uses-permission android:name="android.permission.INTERNET" />
