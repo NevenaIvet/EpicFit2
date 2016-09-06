@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.epicfitproject.AthleteActivity">
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+<LinearLayout  android:layout_width="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_weight="1"
+        android:layout_height="140dp"
+
+        android:id="@+id/profilePicture"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="left"
+        android:background="@drawable/user96"/>
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/changeProfilePictureButton"
+        android:background="@drawable/penforchange"
+        />
+</LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:text="profile"
+                android:id="@+id/heading"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="25sp"
+
+                android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/usernameText"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:text="Username"/>
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/penforchange"
+                    android:id="@+id/changeUsernameButton"
+                    />
+            </LinearLayout>
+        
+
+        </LinearLayout>
+
+    </TableRow>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/genderText"
+            android:text="Male"/>
+        <Switch
+            android:layout_width="0dp"
+            android:id="@+id/genderSwitch"
+            android:layout_height="match_parent"
+            android:textOn="F"
+            android:textOff="M"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/metricSystemText"
+            android:layout_height="match_parent"
+            android:text="Imperial metric system"/>
+        <Switch
+            android:layout_width="0dp"
+            android:id="@+id/metricSystemSwitch"
+            android:layout_height="match_parent"
+            android:textOn="MS"
+            android:textOff="IMS"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/heightText"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:text="Height"/>
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:id="@+id/heightPicker"
+            android:layout_gravity="right">
+
+
+        </NumberPicker>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:id="@+id/weightText"
+            android:layout_height="match_parent"
+            android:text="Weight"/>
+        <NumberPicker
+            android:id="@+id/weightPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:descendantFocusability="blocksDescendants"
+            android:layout_gravity="right">
+
+        </NumberPicker>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/generateBMIText"
+            android:text="Generate BMI"/>
+        <Switch
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/generateBMISwitch"
+            android:textOn="Y"
+            android:textOff="N"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/BMIcalculatedText"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:text="Your BMI is "/>
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+      <Button
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="match_parent"
+          android:id="@+id/addGoalButton"
+          android:text="+Goal"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/nextActionButton"
+            android:text="Next"/>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

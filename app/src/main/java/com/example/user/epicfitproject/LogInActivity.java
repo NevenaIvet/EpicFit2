@@ -66,6 +66,7 @@ public class LogInActivity extends AppCompatActivity {
                     return;
                 }
 
+
                 Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
                 intent.putExtra("LoggedUser", userN);
                 startActivity(intent);
