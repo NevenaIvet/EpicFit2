@@ -21,7 +21,8 @@ android:orientation="vertical"
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 <LinearLayout  android:layout_width="0dp"
@@ -90,7 +91,8 @@ android:orientation="vertical"
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -107,30 +109,13 @@ android:orientation="vertical"
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/metricSystemText"
-            android:layout_height="match_parent"
-            android:text="Imperial metric system"/>
-        <Switch
-            android:layout_width="0dp"
-            android:id="@+id/metricSystemSwitch"
-            android:layout_height="match_parent"
-            android:textOn="MS"
-            android:textOff="IMS"
-            android:layout_weight="1"/>
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -152,7 +137,8 @@ android:orientation="vertical"
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -175,7 +161,8 @@ android:orientation="vertical"
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -194,7 +181,8 @@ android:orientation="vertical"
     <LinearLayout
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:layout_width="match_parent"
@@ -207,7 +195,8 @@ android:orientation="vertical"
     <LinearLayout
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
       <Button
           android:layout_width="0dp"

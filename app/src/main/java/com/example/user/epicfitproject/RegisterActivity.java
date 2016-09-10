@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.example.user.epicfitproject.model.UsersManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
     private static final int RESULT_REG_SUCCESSFULL = 10;
     private EditText username;
@@ -69,7 +72,12 @@ public class RegisterActivity extends AppCompatActivity {
                     password.requestFocus();
                     return;
                 }
-
+                if(!check(eMail)){
+                    email.setError("Enter valid email");
+                    email.setText(null);
+                    email.requestFocus();
+                    return;
+                }
                 if(UsersManager.getInstance(RegisterActivity.this).existsUser(userName)){
                     username.setError("User already exists");
                     username.setText(null);
@@ -89,5 +97,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private static boolean check(String s ){
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(s);
+        if(matcher.matches()){
+            return true;
+        }
+
+        return false;
     }
 }
