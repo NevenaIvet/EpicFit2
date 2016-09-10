@@ -8,7 +8,13 @@ public class ActualExercise extends Exercise{
     private String info;//??
     private int timeForCompletion;
 
-    public ActualExercise(String name,int timeForCompletion,int picture, int repetitions, int sets){
+    public ActualExercise(int picture, int repetitions, int sets, String name, String info) {
+        super(picture, repetitions, sets);
+        this.name = name;
+        this.info = info;
+    }
+
+    public ActualExercise(String name, int timeForCompletion, int picture, int repetitions, int sets){
         super(picture,repetitions,sets);
         this.name = name;
         this.timeForCompletion = timeForCompletion;

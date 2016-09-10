@@ -11,14 +11,21 @@
 
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.user.epicfitproject.RegisterActivity">
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="register"
+    android:gravity="center"
+    android:textAllCaps="true"
+    android:textSize="35sp"
+    android:textColor="@color/greenFive"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:inputType="textPersonName"
             android:hint="username"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:ems="10"
             android:layout_weight="1"
@@ -29,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:inputType="textPassword"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:textSize="20sp"
             android:hint="password"
             android:ems="10"
@@ -41,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:inputType="textPassword"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:textSize="20sp"
             android:hint="confirm password"
             android:ems="10"
@@ -56,22 +63,18 @@
             android:textSize="20sp"
             android:ems="10"
             android:layout_weight="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:hint="email"
             android:id="@+id/editText_email"
             android:layout_gravity="center_horizontal" />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Create Profile"
-            android:textAlignment="center"
-            android:layout_margin="20dp"
-            android:textSize="40sp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Create"
             android:id="@+id/button_createProfile"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="74dp"
-            android:background="#fadcdc" />
+            android:layout_marginBottom="5dp"
+           android:background="@color/greenOne" />
 
 
 </LinearLayout>

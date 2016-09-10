@@ -1,10 +1,13 @@
 package com.example.user.epicfitproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.user.epicfitproject.model.UsersManager;
@@ -14,6 +17,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button register;
+    private CheckBox rememberMeCheckBox;
     private Button login;
 
 
@@ -26,7 +30,8 @@ public class LogInActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password_login);
         register = (Button) findViewById(R.id.button_register);
         login = (Button) findViewById(R.id.button_login);
-
+        rememberMeCheckBox= (CheckBox) findViewById(R.id.checkBox);
+        rememberMeCheckBox.setText("Remember me");
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,12 +68,20 @@ public class LogInActivity extends AppCompatActivity {
                     username.requestFocus();
                     return;
                 }
-
-
-                Intent intent = new Intent(LogInActivity.this, AthleteActivity.class);
-                intent.putExtra("LoggedUser", userN);
-                startActivity(intent);
-
+                if(rememberMeCheckBox.isChecked()){
+                    SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preffs.edit();
+                    editor.putString("loggedUser", userN);
+                    editor.commit();
+                    Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+                    intent.putExtra("LoggedUser",userN);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+                    intent.putExtra("LoggedUser", userN);
+                    startActivity(intent);
+                }
             }
         });
 

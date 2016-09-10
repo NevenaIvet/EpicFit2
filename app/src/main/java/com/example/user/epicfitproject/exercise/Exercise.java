@@ -11,7 +11,6 @@ import java.io.File;
         private int sets=0;
 
         public Exercise(int picture, int repetitions, int sets) {
-
             this.picture = picture;
             this.repetitions=repetitions;
             this.sets=sets;

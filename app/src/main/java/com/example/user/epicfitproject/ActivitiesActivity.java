@@ -17,6 +17,7 @@ public class ActivitiesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
+        //tuk ima dostup do datata startDate i endDate ot predniq intent
         upperBody = (Button) findViewById(R.id.button_upper_body);
         lowerBody = (Button) findViewById(R.id.button_lower_body);
         streching = (Button) findViewById(R.id.button_streching);
