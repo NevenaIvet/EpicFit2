@@ -40,7 +40,7 @@ public class UsersManager {
                         o.getString("password"),
                         o.getString("email"));
 
-                registeredUsers.put(user.getUsername(), user);
+                registeredUsers.put(user.getEmail(), user);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -49,13 +49,15 @@ public class UsersManager {
     }
 
 
-    public boolean existsUser(String userName) {
-        return registeredUsers.containsKey(userName);
+    public boolean existsUser(String email) {
+        return registeredUsers.containsKey(email);
     }
+
+
 
     public void regUser(Activity activity, String userName, String passWord, String eMail) {
         User user = new User(userName, passWord, eMail);
-        registeredUsers.put(userName, user);
+        registeredUsers.put(eMail, user);
         SharedPreferences prefs = activity.getSharedPreferences("registeredUsers", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         String key = "registeredUsers";
@@ -83,13 +85,13 @@ public class UsersManager {
         editor.commit();
     }
 
-    public boolean validateLogin(String userN, String pass) {
+    public boolean validateLogin(String email, String pass) {
 
-        if(!registeredUsers.containsKey(userN)){
+        if(!registeredUsers.containsKey(email)){
             return false;
         }
 
-        if(!registeredUsers.get(userN).getPassword().equals(pass)){
+        if(!registeredUsers.get(email).getPassword().equals(pass)){
             return  false;
         }
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:orientation="vertical"
+    android:background="@drawable/darkbg"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
+
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.user.epicfitproject.AthleteActivity">
+    tools:context=".iterface.AthleteActivity">
 
 
 
@@ -27,23 +29,19 @@ android:orientation="vertical"
         android:layout_centerHorizontal="true">
 <LinearLayout  android:layout_width="0dp"
     android:layout_weight="1"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <ImageButton
         android:layout_width="140dp"
         android:layout_weight="1"
-        android:layout_height="140dp"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_launcher"
 
         android:id="@+id/profilePicture"
         android:layout_marginBottom="10dp"
         android:layout_gravity="left"
-        android:background="@drawable/user96"/>
-    <ImageButton
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/changeProfilePictureButton"
-        android:background="@drawable/penforchange"
-        />
+/>
 </LinearLayout>
 
 
@@ -57,6 +55,7 @@ android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_height="0dp"
                 android:text="profile"
+                android:textColor="@color/greenOne"
                 android:id="@+id/heading"
                 android:textAllCaps="true"
                 android:textStyle="bold"
@@ -72,6 +71,9 @@ android:orientation="vertical"
                     android:layout_height="match_parent"
                     android:id="@+id/usernameText"
                     android:gravity="center"
+                    android:hint="here should be username"
+                    android:textColorHint="@color/greenFive"
+                    android:textColor="@color/greenFive"
                     android:textSize="15sp"
                     android:layout_weight="1"
                     android:text="Username"/>
@@ -79,11 +81,17 @@ android:orientation="vertical"
                 <ImageButton
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/penforchange"
+                    android:background="@mipmap/ic_launcher"
                     android:id="@+id/changeUsernameButton"
                     />
             </LinearLayout>
-        
+        <Button
+            android:layout_width="match_parent"
+            android:text="Logout"
+            android:id="@+id/logout"
+            android:gravity="center"
+            android:background="@color/greenOne"
+            android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -95,14 +103,17 @@ android:orientation="vertical"
         android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
+            android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textColor="@color/greenOne"
             android:layout_height="match_parent"
             android:id="@+id/genderText"
             android:text="Male"/>
         <Switch
             android:layout_width="0dp"
             android:id="@+id/genderSwitch"
+            android:textColor="@color/greenOne"
             android:layout_height="match_parent"
             android:textOn="F"
             android:textOff="M"
@@ -120,15 +131,19 @@ android:orientation="vertical"
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:textColor="@color/greenOne"
             android:id="@+id/heightText"
             android:layout_height="match_parent"
-            android:gravity="left"
             android:text="Height"/>
         <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="blocksDescendants"
             android:id="@+id/heightPicker"
+            android:solidColor="@color/greenFive"
+            android:layout_width="wrap_content"
+            android:background="@color/greenOne"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
             android:layout_gravity="right">
 
 
@@ -144,15 +159,18 @@ android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="left"
+            android:textSize="20sp"
+            android:textColor="@color/greenOne"
             android:id="@+id/weightText"
             android:layout_height="match_parent"
             android:text="Weight"/>
         <NumberPicker
             android:id="@+id/weightPicker"
+            android:solidColor="@color/greenFive"
             android:layout_width="wrap_content"
+
+            android:background="@color/greenOne"
             android:layout_height="wrap_content"
-
-
             android:descendantFocusability="blocksDescendants"
             android:layout_gravity="right">
 
@@ -168,6 +186,8 @@ android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
+            android:textColor="@color/greenOne"
+            android:textSize="20sp"
             android:id="@+id/generateBMIText"
             android:text="Generate BMI"/>
         <Switch
@@ -176,6 +196,7 @@ android:orientation="vertical"
             android:id="@+id/generateBMISwitch"
             android:textOn="Y"
             android:textOff="N"
+            android:textColor="@color/greenFive"
             android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
@@ -187,6 +208,8 @@ android:orientation="vertical"
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/BMIcalculatedText"
+            android:textColor="@color/greenOne"
+            android:textSize="20sp"
             android:layout_height="match_parent"
             android:visibility="invisible"
             />
@@ -197,22 +220,18 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
       <Button
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_weight="1"
+          android:background="@color/greenOne"
           android:layout_height="match_parent"
           android:id="@+id/addGoalButton"
           android:text="+Goal"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/nextActionButton"
-            android:text="Next"/>
+
 
     </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

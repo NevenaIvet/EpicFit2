@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="@drawable/kettle"
     android:paddingRight="@dimen/activity_horizontal_margin"
+
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.user.epicfitproject.ActivitiesActivity">
+    tools:context=".iterface.ActivitiesActivity">
 
 
     <LinearLayout
@@ -18,10 +20,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@color/greenFour"
+
             android:id="@+id/button_upper_body"
             android:text="upper boddy"
             android:layout_gravity="center_horizontal" />
@@ -30,8 +37,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@color/greenOne"
             android:text="lower body"
             android:id="@+id/button_lower_body"
+            android:background="@android:color/transparent"
             android:layout_gravity="center_horizontal" />
 
         <Button
@@ -39,21 +49,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="cardio"
+            android:textColor="@color/greenOne"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
             android:id="@+id/button_cardio"
             android:layout_gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:text="streching"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            android:id="@+id/button_streching"
-            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/greenOne"
             android:layout_weight="1"
             android:text="hiit"
             android:id="@+id/button_hiit"

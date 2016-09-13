@@ -4,28 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/fit"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogInActivity">
+        <activity android:name=".iterface.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainMenuActivity" />
-        <activity android:name=".ActivitiesActivity" />
-        <activity android:name=".GoalActivity" />
-        <activity android:name=".AthleteActivity" />
-        <activity android:name=".ExerciseActivity">
+        <activity android:name=".iterface.RegisterActivity" />
+        <activity android:name=".iterface.MainMenuActivity" />
+        <activity android:name=".iterface.ActivitiesActivity" />
+        <activity android:name=".iterface.GoalActivity" />
+        <activity android:name=".iterface.AthleteActivity" />
+        <activity android:name=".iterface.ExerciseActivity">
             <uses-permission android:name="android.permission.INTERNET" />
         </activity>
-        <activity android:name=".Statistics" />
-        <activity android:name=".ListOFExercisesActivity" />
-        <activity android:name=".AddExerciseProperties"></activity>
+        <activity android:name=".iterface.Statistics" />
+        <activity android:name=".iterface.ListOFExercisesActivity" />
+        <activity android:name=".iterface.AddExerciseProperties"></activity>
     </application>
 
 </manifest>
