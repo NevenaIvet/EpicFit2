@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".iterface.MainMenuActivity"
+    tools:context=".UI.MainMenuActivity"
     android:background="@drawable/darkbg">
 
 
@@ -17,7 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:background="@drawable/rectangle"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/greenOne"
                 android:text="Profile"
@@ -32,7 +32,7 @@
                 android:layout_height="0dp"
                 android:textColor="@color/greenOne"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:background="@drawable/rectangle"
                android:text="Activities"
                 android:id="@+id/button_activities_menu" />
 
@@ -43,7 +43,7 @@
                 android:layout_height="0dp"
                 android:textColor="@color/greenOne"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
+                android:background="@drawable/rectangle"
                 android:text="Active goals"
                 android:id="@+id/button_chalenges_menu" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:textColor="@color/greenOne"
-                android:background="@android:color/transparent"
+                android:background="@drawable/rectangle"
                 android:text="Progress"
                 android:id="@+id/button_progress_menu" />
 

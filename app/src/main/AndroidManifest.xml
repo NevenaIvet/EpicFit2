@@ -7,8 +7,8 @@
         android:icon="@drawable/fit"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".iterface.LogInActivity">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".UI.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,17 +16,17 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".iterface.RegisterActivity" />
-        <activity android:name=".iterface.MainMenuActivity" />
-        <activity android:name=".iterface.ActivitiesActivity" />
-        <activity android:name=".iterface.GoalActivity" />
-        <activity android:name=".iterface.AthleteActivity" />
-        <activity android:name=".iterface.ExerciseActivity">
+        <activity android:name=".UI.RegisterActivity" />
+        <activity android:name=".UI.MainMenuActivity" />
+        <activity android:name=".UI.ActivitiesActivity" />
+        <activity android:name=".UI.GoalActivity" />
+        <activity android:name=".UI.AthleteActivity" />
+        <activity android:name=".UI.ExerciseActivity">
             <uses-permission android:name="android.permission.INTERNET" />
         </activity>
-        <activity android:name=".iterface.Statistics" />
-        <activity android:name=".iterface.ListOFExercisesActivity" />
-        <activity android:name=".iterface.AddExerciseProperties"></activity>
+        <activity android:name=".UI.Statistics" />
+        <activity android:name=".UI.ListOFExercisesActivity" />
+        <activity android:name=".UI.AddExerciseProperties"></activity>
     </application>
 
 </manifest>

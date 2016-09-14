@@ -1,29 +1,22 @@
 package com.example.user.epicfitproject.model.exercise;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by user on 6.9.2016 г..
  */
-    public  class Exercise implements IUpperBody,ILowerBody,IHiit,ICardio {
-        private int picture;
-        private String name;
-        private String url;
-        private String information;
+    public  class Exercise implements IUpperBody,ILowerBody,IHiit,ICardio,Comparable<Exercise>,Parcelable {
 
-    public Exercise(String name){
-        this.name=name;
-    }
-    public Exercise(String name,int picture,String information){
-        this.picture = picture;
-        this.name = name;
-        this.information = information;
-    }
-    public Exercise(String name,String information){
-        this.name = name;
-        this.information = information;
-    }
+    private int picture;
+    private String name;
+    private String url;
+    private int information;
 
 
-    public Exercise(int picture, String name, String url, String information) {
+
+
+    public Exercise(int picture, String name, String url, int information) {
         this.picture = picture;
         this.name = name;
         this.url = url;
@@ -42,8 +35,23 @@ package com.example.user.epicfitproject.model.exercise;
         return url;
     }
 
-    public String getInformation() {
+    public int getInformation() {
         return information;
+    }
+
+    @Override
+    public int compareTo(Exercise exercise) {
+        return this.getName().compareTo(exercise.getName());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }
 

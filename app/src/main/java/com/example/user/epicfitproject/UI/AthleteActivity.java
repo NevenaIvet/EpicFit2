@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.iterface;
+package com.example.user.epicfitproject.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +16,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.model.User;
 import com.example.user.epicfitproject.model.UsersManager;
 import com.example.user.epicfitproject.model.athlete.Athlete;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,28 +48,67 @@ public class AthleteActivity extends AppCompatActivity {
     private NumberPicker pickHeight;
     private NumberPicker pickWeight;
     private String [] heights;
-    private Athlete athlete;
+    //private  Athlete athlete=null;//tuka ne e taka
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_athlete);
+        genderSwitch= (Switch) findViewById(R.id.genderSwitch);
+        gender = (TextView) findViewById(R.id.genderText);
+        gender.setFocusable(false);
+        gender.setClickable(false);
+
         heading = (TextView) findViewById(R.id.heading);
         heading.setFocusable(false);
         heading.setClickable(false);
         doubleValues=new ArrayList<>();
         username = (TextView) findViewById(R.id.usernameText);
 
-        username.setText(getIntent().getStringExtra("LoggedUser")); // tuka prroveri v users managera
+        SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
+        String loggedUserEmail = preffs.getString("loggedUser", "nope");
+        if(!loggedUserEmail.equals("nope") || UsersManager.getInstance(this).existsUser(loggedUserEmail)){
+            username.setText(UsersManager.getInstance(this).getUser(loggedUserEmail).getUsername());
+        }
+        SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
+        String athleteH = preferences.getString("athlete","nope");
+        if(!athleteH.equals("nope")){
+            //Ako e lognat mu zapazi neshtata
+            //genderSwitch.setChecked();
+            String json = this.getSharedPreferences("athlete", Context.MODE_PRIVATE).getString("athlete", "nope");
+
+            JSONObject obj = null;
+            try {
+                obj = new JSONObject(json);
+                Athlete aT = new Athlete(obj.getInt("picture"),obj.getDouble("weight"),obj.getDouble("height"),obj.getString("gender"));
+                if(aT.getGender().equals("male")){
+                    genderSwitch.setChecked(false);
+                    gender.setText("Male");
+                }else{
+                    genderSwitch.setChecked(true);
+                    gender.setText("Female");
+                }
+                //TODO tuk oshte da se promenqt vsichki neshta pikerite da im se sloji ot zapamet
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+
+
+
+
+
+
+        }
+
+
 
         username.setFocusable(false);
         username.setClickable(false);
-        gender = (TextView) findViewById(R.id.genderText);
-        gender.setFocusable(false);
-        gender.setClickable(false);
+
         BMIinfo = (TextView) findViewById(R.id.BMIcalculatedText);
         height = (TextView) findViewById(R.id.heightText);
         height.setFocusable(false);
@@ -88,6 +129,13 @@ public class AthleteActivity extends AppCompatActivity {
         addGoal = (Button) findViewById(R.id.addGoalButton);
 
         changePenUsernameButton = (ImageButton) findViewById(R.id.changeUsernameButton);
+        changePenUsernameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              // UsersManager.getInstance(AthleteActivity.this).getUser(username.getText().toString()).setUsername("jdkfhgkfdhk");
+                //TODO see this and fix
+            }
+        });
         profilePicture = (ImageView) findViewById(R.id.profilePicture);
         genderSwitch= (Switch) findViewById(R.id.genderSwitch);
         genderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -160,6 +208,7 @@ public class AthleteActivity extends AppCompatActivity {
         pickWeight.setMinValue(0);
         pickWeight.setMaxValue(weights.length-1);
         pickWeight.setSaveEnabled(true);
+        pickWeight.setOnLongPressUpdateInterval(100000000);
         pickWeight.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         pickWeight.setDisplayedValues(weights);
         View.OnClickListener onClickPicker = new View.OnClickListener() {
@@ -179,6 +228,19 @@ public class AthleteActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(AthleteActivity.this,LogInActivity.class);
+                SharedPreferences preferences = getSharedPreferences("CurrentlyLogged",Context.MODE_PRIVATE);
+                preferences.edit().remove("loggedUser").commit();
+                startActivity(intent);
+                finish();
+
+            }
+        });
+        addGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
                 String nameAthlete  = username.getText().toString();
                 String gender ;
                 if(genderSwitch.isChecked()){
@@ -193,15 +255,15 @@ public class AthleteActivity extends AppCompatActivity {
                 double weightD= Double.parseDouble(weightH);
                 double heightD = Double.parseDouble(heightH);
 
-                athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
-                SharedPreferences preferences = getSharedPreferences("athlete", Context.MODE_PRIVATE);
+               Athlete athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
+                SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 JSONObject obj = new JSONObject();
                 try {
                     //iskam da svurja tekushtiq lognat potrebitel sus suzdadeniq atlet i ne staa
-                    String email = getIntent().getDataString();
+                    //String email = getIntent().getDataString();
 
-                    obj.put("email",email);
+                    //obj.put("email",email);
                     obj.put("picture",athlete.getPicture());
                     obj.put("height",athlete.getHeight());
                     obj.put("weight",athlete.getWeight());
@@ -216,14 +278,6 @@ public class AthleteActivity extends AppCompatActivity {
                 editor.putString("athlete",value);
                 editor.commit();
 
-                Intent intent = new Intent(AthleteActivity.this,MainMenuActivity.class);
-                //intent.putExtra("athlete",athlete);
-                startActivity(intent);
-            }
-        });
-        addGoal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 Intent intent = new Intent(AthleteActivity.this, GoalActivity.class);
                 startActivity(intent);
             }

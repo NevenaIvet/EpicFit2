@@ -9,7 +9,7 @@
     app:layout_behavior="appbar_scrolling_view_behavior"
     tools:showIn="@layout/exercises_list_row"
     android:orientation="vertical"
-    tools:context=".iterface.ListOFExercisesActivity">
+    tools:context=".UI.ListOFExercisesActivity">
 
     <TextView
         android:layout_width="match_parent"

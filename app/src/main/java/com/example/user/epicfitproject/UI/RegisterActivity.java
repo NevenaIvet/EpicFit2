@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.iterface;
+package com.example.user.epicfitproject.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

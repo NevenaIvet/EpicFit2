@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.iterface;
+package com.example.user.epicfitproject.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +26,15 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+
+        SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
+        String loggedUserEmail = preffs.getString("loggedUser", "nope");
+        if(!loggedUserEmail.equals("nope") && UsersManager.getInstance(this).existsUser(loggedUserEmail)){
+            Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+            intent.putExtra("loggedUser", loggedUserEmail );
+            startActivity(intent);
+        }
 
         email = (EditText) findViewById(R.id.username_login);
         password = (EditText) findViewById(R.id.password_login);
@@ -83,12 +92,18 @@ public class LogInActivity extends AppCompatActivity {
                     //ako ne e cheknato bi trqbvalo da mi sloji username v athlete activity
                     //s usersmanagera i json trqbva da vzema username
                     Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
-                    intent.putExtra("email", emailH);
+                    intent.putExtra("LoggedUser", emailH);
 
                     startActivity(intent);
+                    finish();
                 }
             }
         });
 
+    }
+
+    @Override
+    public void onActivityReenter(int resultCode, Intent data) {
+        super.onActivityReenter(resultCode, data);
     }
 }

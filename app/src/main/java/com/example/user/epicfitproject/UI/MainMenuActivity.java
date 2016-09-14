@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.iterface;
+package com.example.user.epicfitproject.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         profile= (Button) findViewById(R.id.button_profile_menu);
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

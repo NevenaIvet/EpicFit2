@@ -53,7 +53,9 @@ public class UsersManager {
         return registeredUsers.containsKey(email);
     }
 
-
+    public User getUser(String email){
+        return registeredUsers.get(email);
+    }
 
     public void regUser(Activity activity, String userName, String passWord, String eMail) {
         User user = new User(userName, passWord, eMail);

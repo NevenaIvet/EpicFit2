@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".iterface.ExerciseActivity">
+    tools:context=".UI.ExerciseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,38 +15,47 @@
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="45sp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
-            android:id="@+id/nameOfExerciseText"
+            android:id="@+id/name"
             android:gravity="center"
-            android:text="Deadlift "/>
+            />
        <TextView
            android:layout_width="match_parent"
-           android:layout_height="200sp"
+           android:layout_height="0dp"
+           android:layout_weight="3"
            android:layout_gravity="center"
            android:gravity="center"
            android:text="info why is it good for you"
            android:id="@+id/infoForTheExercise" />
         <ImageView
             android:layout_width="match_parent"
+            android:background="@android:color/black"
             android:id="@+id/image"
-           android:src="@mipmap/ic_launcher"
-            android:layout_height="200dp" />
+            android:adjustViewBounds="true"
+
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
             android:text="add"
             android:id="@+id/addButton"/>
         <TextView
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:id="@+id/additionText"
             android:text="See our fitness helpers :"/>
         <VideoView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_height="0dp"
             android:clickable="true"
             android:id="@+id/video">
 

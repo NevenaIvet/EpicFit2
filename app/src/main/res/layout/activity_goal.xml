@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
 
-    tools:context=".iterface.GoalActivity">
+    tools:context=".UI.GoalActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,31 +35,62 @@
             android:textSize="20sp"
             android:id="@+id/textView2" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    android:layout_weight="1">
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/greenOne"
+        android:id="@+id/button_from"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="End"
+        android:background="@color/greenOne"
+        android:id="@+id/button_to"
+        android:layout_gravity="center_horizontal" />
 
 
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
-        <CalendarView
-            android:layout_width="match_parent"
-            android:id="@+id/calendar"
-            android:layout_weight="5"
-            android:layout_height="0dp">
-
-        </CalendarView>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="The challenge ends on: "
+            android:gravity="center"
+            android:text="The challenge starts on: "
             android:textColor="@color/greenThree"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:id="@+id/dates_save_field"
             android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="The challenge ends on: "
+            android:textColor="@color/greenThree"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/dates_save_field2"
+            android:layout_gravity="center_horizontal" />
 
-
+    </LinearLayout>
 
         <Button
             android:layout_width="match_parent"

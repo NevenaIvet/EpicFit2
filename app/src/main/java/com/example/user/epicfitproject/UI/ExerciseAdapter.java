@@ -1,13 +1,17 @@
-package com.example.user.epicfitproject.iterface;
+package com.example.user.epicfitproject.UI;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.exercise.ActualExercise;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 
 import java.util.List;
@@ -17,15 +21,18 @@ import java.util.List;
  */
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyViewHolder> {
     private List<Exercise> exercises ;
+    private Activity activity;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public TextView information;
+        LinearLayout listRow;
 
         public MyViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.name_exercise);
             information = (TextView) view.findViewById(R.id.info_exercise);
+            listRow = (LinearLayout) view.findViewById(R.id.list_row);
 
         }
     }
@@ -39,11 +46,22 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        Exercise exercise = exercises.get(position);
+        final Exercise exercise = exercises.get(position);
         holder.name.setText(exercise.getName());
-        holder.information.setText(exercise.getInformation());
+      //  holder.information.setText(exercise.getInformation());
+        holder.listRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               // Toast.makeText(activity, "clicked "+ holder.name.getText().toString(), Toast.LENGTH_SHORT).show();
+                //ne e taka she si predavam obekta
+              Intent intent = new Intent(activity,ExerciseActivity.class);
+            //    intent.putExtra("exercise",exercise);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,7 +69,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
         return exercises.size();
     }
 
-    public ExerciseAdapter (List<Exercise> exercises){
+    public ExerciseAdapter (Context context, List<Exercise> exercises){
         this.exercises = exercises;
+        this.activity = (Activity) context;
     }
 }
