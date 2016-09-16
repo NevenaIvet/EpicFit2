@@ -14,7 +14,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".UI.RegisterActivity" />
         <activity android:name=".UI.MainMenuActivity" />
@@ -26,7 +25,8 @@
         </activity>
         <activity android:name=".UI.Statistics" />
         <activity android:name=".UI.ListOFExercisesActivity" />
-        <activity android:name=".UI.AddExerciseProperties"></activity>
+        <activity android:name=".UI.AddExerciseProperties" />
+        <activity android:name=".ActiveGoals"></activity>
     </application>
 
 </manifest>

@@ -19,6 +19,8 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:id="@+id/name"
+            android:textSize="35sp"
+            android:textColor="@color/greenOne"
             android:gravity="center"
             />
        <TextView
@@ -41,26 +43,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-
+            android:background="@drawable/rectangle"
             android:text="add"
             android:id="@+id/addButton"/>
         <TextView
             android:layout_gravity="center"
-            android:gravity="center"
+            android:gravity="left"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
             android:layout_weight="1"
             android:id="@+id/additionText"
-            android:text="See our fitness helpers :"/>
-        <VideoView
-            android:layout_width="match_parent"
-            android:layout_weight="3"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:id="@+id/video">
+            android:text="Want to see how ?"/>
 
-        </VideoView>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
+            android:id="@+id/button_video"
+            android:text="Click"/>
     </LinearLayout>
 
 </ScrollView>

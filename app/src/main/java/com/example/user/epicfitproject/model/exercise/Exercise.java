@@ -23,6 +23,25 @@ import android.os.Parcelable;
         this.information = information;
     }
 
+    protected Exercise(Parcel in) {
+        picture = in.readInt();
+        name = in.readString();
+        url = in.readString();
+        information = in.readInt();
+    }
+
+    public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
+        @Override
+        public Exercise createFromParcel(Parcel in) {
+            return new Exercise(in);
+        }
+
+        @Override
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+    };
+
     public int getPicture() {
         return picture;
     }
@@ -51,7 +70,10 @@ import android.os.Parcelable;
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeInt(picture);
+        parcel.writeString(name);
+        parcel.writeString(url);
+        parcel.writeInt(information);
     }
 }
 

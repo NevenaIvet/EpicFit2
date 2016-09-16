@@ -11,34 +11,34 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.datatype.Duration;
-
 /**
  * Created by user on 3.9.2016 г..
  */
 public class Goal {
 
 
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private List<ActualExercise> exercises=new ArrayList<>();
-    public Goal(Date startDate,Date endDate){
+    public Goal(String startDate,String endDate){
         this.startDate=startDate;
         this.endDate=endDate;
     }
 
     //priemam string zashtoto ot view shte e po -lesno da se vzeeme
     public Goal(String startDate,String endDate,List<ActualExercise> exercises){
-        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
-
-        try {
-            this.startDate = ft.parse(startDate);
-            this.endDate=ft.parse(endDate);
-
-        }catch (ParseException e) {
-            Log.e("Date"," problems with parsing date in the constructor of object goal");
-        }
+//        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
+//
+//        try {
+//            this.startDate = ft.parse(startDate);
+//            this.endDate=ft.parse(endDate);
+//
+//        }catch (ParseException e) {
+//            Log.e("Date"," problems with parsing date in the constructor of object goal");
+//        }
         this.exercises=exercises;
+        this.startDate=startDate;
+        this.endDate=endDate;
     }
 
     //adding exercise to our challenge program
@@ -59,8 +59,8 @@ public class Goal {
             }
         }
     }
-    public void changeRepetitions(ActualExercise e ,int reps){
-        for(Iterator<ActualExercise> it = exercises.iterator();it.hasNext();){
+    public void changeRepetitions(ActualExercise e , int reps){
+        for(Iterator<ActualExercise> it = exercises.iterator(); it.hasNext();){
             ActualExercise toChange = it.next();
             if(toChange.equalsExercise(e)){
                 toChange.setRepetitions(reps);
@@ -68,13 +68,21 @@ public class Goal {
 
         }
     }
-    public void changeSets(ActualExercise e ,int sets){
-        for(Iterator<ActualExercise> it = exercises.iterator();it.hasNext();){
+    public void changeSets(ActualExercise e , int sets){
+        for(Iterator<ActualExercise> it = exercises.iterator(); it.hasNext();){
             ActualExercise toChange = it.next();
             if(toChange.equalsExercise(e)){
                 toChange.setSets(sets);
             }
 
         }
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
     }
 }

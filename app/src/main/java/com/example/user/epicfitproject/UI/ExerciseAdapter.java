@@ -3,6 +3,8 @@ package com.example.user.epicfitproject.UI;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +60,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
                // Toast.makeText(activity, "clicked "+ holder.name.getText().toString(), Toast.LENGTH_SHORT).show();
                 //ne e taka she si predavam obekta
               Intent intent = new Intent(activity,ExerciseActivity.class);
-            //    intent.putExtra("exercise",exercise);
+
+                 intent.putExtra("exercise",exercise);
                 activity.startActivity(intent);
             }
         });

@@ -35,7 +35,7 @@ public class AddExerciseProperties extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(repsPicker.getValue()>0&&seriesPicker.getValue()>1){
-                    //Intent intent = new Intent(AddExerciseProperties.this,)
+
                     Toast.makeText(AddExerciseProperties.this,"Exercise added !",Toast.LENGTH_SHORT).show();
                 }
             }
