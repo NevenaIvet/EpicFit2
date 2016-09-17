@@ -1,8 +1,6 @@
 package com.example.user.epicfitproject.UI;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,16 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.RepetitionsSets;
-import com.example.user.epicfitproject.model.User;
+import com.example.user.epicfitproject.fragments.RepetitionsSets;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 import com.example.user.epicfitproject.model.exercise.ExerciseManager;
-import com.example.user.epicfitproject.model.goal.Goal;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ExerciseActivity extends AppCompatActivity implements RepetitionsSets.OnDoneListener{
     private TextView heading;

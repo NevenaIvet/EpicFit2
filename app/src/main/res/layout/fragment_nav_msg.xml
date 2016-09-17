@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/rectangle"
-    tools:context=".NavigationMSG">
+    tools:context=".fragments.NavigationMSG">
 
     <TextView
         android:layout_width="match_parent"

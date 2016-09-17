@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.model;
+package com.example.user.epicfitproject.model.user;
 
 /**
  * Created by user on 3.9.2016 г..

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.user.epicfitproject.ActiveGoals;
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
 
@@ -47,9 +46,17 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        progress = (Button) findViewById(R.id.button_progress_menu);
+        progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this,Start.class);
+                startActivity(intent);
+            }
+        });
 
 
-           // Intent intent = new Intent(MainMenuActivity.this,ActiveGoals.class);
+        // Intent intent = new Intent(MainMenuActivity.this,ActiveGoals.class);
             //otivam a goals tam veche she suzdam celta i she q zapisha i pokaja
 
 

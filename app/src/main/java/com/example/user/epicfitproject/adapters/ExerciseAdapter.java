@@ -1,19 +1,17 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.UI.ExerciseActivity;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 
 import java.util.List;

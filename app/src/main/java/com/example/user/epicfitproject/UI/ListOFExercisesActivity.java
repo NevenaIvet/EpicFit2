@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.adapters.ExerciseAdapter;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 
 import org.json.JSONArray;
@@ -93,13 +94,13 @@ public class ListOFExercisesActivity extends AppCompatActivity {
                 break ;
             case R.id.button_lower_body:
                 //http://www.bodybuilding.com/fun/6-leg-workouts-to-supersize-your-lower-body.html
-//                exerciseList.add(new Exercise("Full squat"));
-//                exerciseList.add(new Exercise("Barbel lunge"));
-//                exerciseList.add(new Exercise("Single leg deadlift"));
+               // exerciseList.add(new Exercise(R.drawable.fit,"Squat","ui913K0fspY&feature=youtu.be",R.string.squat));
+                //exerciseList.add(new Exercise(R.drawable.fit,"Bulgarian Squat","PiaEYqsk0Dw&feature=youtu.be",R.string.bulgarian_squat));
+
                 break;
             case R.id.button_cardio:
-//                exerciseList.add(new Exercise("Swimming"));
-//                exerciseList.add(new Exercise("Cycling"));
+              //  exerciseList.add(new Exercise(R.drawable.fit,"Swimming"));
+               // exerciseList.add(new Exercise("Cycling"));
 //                exerciseList.add(new Exercise("Jogging"));
 //                exerciseList.add(new Exercise("Sprints"));
                 break;

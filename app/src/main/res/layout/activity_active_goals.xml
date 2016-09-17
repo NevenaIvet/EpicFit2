@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/darkbg"
     android:id="@+id/goals_list_layout"
-    tools:context="com.example.user.epicfitproject.ActiveGoals">
+    tools:context=".UI.ActiveGoals">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

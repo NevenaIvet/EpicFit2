@@ -16,11 +16,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.User;
-import com.example.user.epicfitproject.model.UsersManager;
+import com.example.user.epicfitproject.model.user.UsersManager;
 import com.example.user.epicfitproject.model.athlete.Athlete;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

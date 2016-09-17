@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.UsersManager;
+import com.example.user.epicfitproject.model.user.UsersManager;
 
 public class LogInActivity extends AppCompatActivity {
 

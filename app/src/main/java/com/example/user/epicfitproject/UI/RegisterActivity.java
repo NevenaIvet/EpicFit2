@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.UsersManager;
+import com.example.user.epicfitproject.model.user.UsersManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject;
+package com.example.user.epicfitproject.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.epicfitproject.model.exercise.ActualExercise;
+import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.model.goal.Goal;
 
 import java.util.List;

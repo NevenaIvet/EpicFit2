@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject;
+package com.example.user.epicfitproject.fragments;
 
 
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.UI.ExerciseActivity;
 
 

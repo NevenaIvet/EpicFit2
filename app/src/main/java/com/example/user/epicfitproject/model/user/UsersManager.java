@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.model;
+package com.example.user.epicfitproject.model.user;
 
 import android.app.Activity;
 import android.content.Context;

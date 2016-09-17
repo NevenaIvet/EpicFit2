@@ -4,17 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.user.epicfitproject.NavigationMSG;
+import com.example.user.epicfitproject.fragments.NavigationMSG;
 import com.example.user.epicfitproject.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -22,7 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class GoalActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,DialogInterface.OnCancelListener,NavigationMSG.OnGotItTap {

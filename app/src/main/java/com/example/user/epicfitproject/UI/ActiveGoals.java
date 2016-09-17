@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject;
+package com.example.user.epicfitproject.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.user.epicfitproject.UI.GoalActivity;
+import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.adapters.GoalsAdapter;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
 import com.example.user.epicfitproject.model.exercise.ExerciseManager;
 import com.example.user.epicfitproject.model.goal.Goal;
@@ -81,9 +82,14 @@ public class ActiveGoals extends AppCompatActivity {
             }
             goal.add(new Goal(startDate,endDate,exercises));
             Log.e("ivet","dobaven e obekt cel");
+
+
+
         }else{
             Log.e("ivet","problem s preffs");
         }
+
+
 
 
     }

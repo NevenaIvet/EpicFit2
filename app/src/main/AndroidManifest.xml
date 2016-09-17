@@ -7,26 +7,29 @@
         android:icon="@drawable/fit"
         android:label="@string/app_name"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".UI.LogInActivity">
+        <activity android:name=".UI.LogInActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".UI.RegisterActivity" />
-        <activity android:name=".UI.MainMenuActivity" />
-        <activity android:name=".UI.ActivitiesActivity" />
-        <activity android:name=".UI.GoalActivity" />
-        <activity android:name=".UI.AthleteActivity" />
-        <activity android:name=".UI.ExerciseActivity">
+        <activity android:name=".UI.RegisterActivity" android:screenOrientation="portrait" />
+        <activity android:name=".UI.MainMenuActivity" android:screenOrientation="portrait" />
+        <activity android:name=".UI.ActivitiesActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".UI.GoalActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".UI.AthleteActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".UI.ExerciseActivity" android:screenOrientation="portrait">
             <uses-permission android:name="android.permission.INTERNET" />
         </activity>
-        <activity android:name=".UI.Statistics" />
-        <activity android:name=".UI.ListOFExercisesActivity" />
-        <activity android:name=".UI.AddExerciseProperties" />
-        <activity android:name=".ActiveGoals"></activity>
+        <activity android:name=".UI.Statistics"  android:screenOrientation="portrait" />
+        <activity android:name=".UI.ListOFExercisesActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".UI.AddExerciseProperties" android:screenOrientation="portrait" />
+        <activity android:name=".UI.ActiveGoals" android:screenOrientation="portrait" />
+        <activity android:name=".UI.Start" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
