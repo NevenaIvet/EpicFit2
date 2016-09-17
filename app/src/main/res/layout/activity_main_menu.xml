@@ -44,8 +44,8 @@
                 android:textColor="@color/greenOne"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:text="Active goals"
-                android:id="@+id/button_chalenges_menu" />
+                android:text="Active goal"
+                android:id="@+id/button_goals" />
 
 
             <Button

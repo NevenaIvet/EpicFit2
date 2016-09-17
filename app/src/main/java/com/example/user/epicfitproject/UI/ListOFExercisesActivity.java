@@ -8,11 +8,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.User;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 
 import org.json.JSONArray;
@@ -85,7 +83,7 @@ public class ListOFExercisesActivity extends AppCompatActivity {
         switch(idButton){
             case R.id.button_upper_body:
 
-                exerciseList.add(new Exercise(R.drawable.fit,"Arnold Shoulder Press","gAS1oKgQcwU&feature=youtu.be",R.string.arnold_shoulder_press));
+                exerciseList.add(new Exercise(R.drawable.arnold12,"Arnold Shoulder Press","gAS1oKgQcwU&feature=youtu.be",R.string.arnold_shoulder_press));
                 exerciseList.add(new Exercise(R.drawable.fit,"Burpee","1JYh1SMHRh4&feature=youtu.be",R.string.burpee_text));
                 exerciseList.add(new Exercise(R.drawable.fit,"Bent Press","Icc6N4b8wSA",R.string.bent_press_text));
                 exerciseList.add(new Exercise(R.drawable.fit,"External Rotation","NloFjBVOwhw&feature=youtu.be",R.string.external_rotation_text));

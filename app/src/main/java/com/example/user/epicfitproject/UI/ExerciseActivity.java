@@ -12,11 +12,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.RepetitionsSets;
+import com.example.user.epicfitproject.model.User;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
 import com.example.user.epicfitproject.model.exercise.Exercise;
+import com.example.user.epicfitproject.model.exercise.ExerciseManager;
+import com.example.user.epicfitproject.model.goal.Goal;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ExerciseActivity extends AppCompatActivity implements RepetitionsSets.OnDoneListener{
     private TextView heading;
@@ -29,6 +37,7 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
     private ActualExercise actualExercise;
     private String urlH = "https://www.youtube.com/watch?v=";
     private RepetitionsSets repsSetsFr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +79,6 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
             public void onClick(View view) {
 
 
-
                 repsSetsFr=new RepetitionsSets();
                 FragmentManager fm = getSupportFragmentManager();
                 repsSetsFr.show(fm, "setsReps");
@@ -83,18 +91,17 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
     public void onNextClicked(int set,int rep ) {
 
         actualExercise=new ActualExercise(exercise.getPicture(),exercise.getName(),exercise.getUrl(),exercise.getInformation(),rep,set);
-        //add to goal
-        Log.e("ivet","mi znachi sum suzdala obekta uspeshno s "+rep+" povt i "+set+" seta");
-
-
-        SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
-        String athleteH = preferences.getString("athlete","nope");
-        if(!athleteH.equals("nope")){
-            //SharedPreferences sp= getSharedPreferences("goalExercises",Context.MODE_PRIVATE);
-            //SharedPreferences.Editor editor = sp.edit();
-            //AKO ne sushtestvuva tova kato se prochete zaglavieto
-
+        if(ExerciseManager.getInstance(this).existsExercise(actualExercise.getName())){
+            Toast.makeText(ExerciseActivity.this,"Exercise was already added to goal",Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            ExerciseManager.getInstance(this).addExercise(this,actualExercise.getPicture(),actualExercise.getName(),actualExercise.getUrl(),actualExercise.getInformation(),actualExercise.getRepetitions(),actualExercise.getSets());
+            Log.e("ivet","uprajnenieto e dobaveno zashtoto go nqma v managera ");
         }
+        Intent intent = new Intent(ExerciseActivity.this,ActivitiesActivity.class);
+        startActivity(intent);
+        finish();
+
 
     }
 

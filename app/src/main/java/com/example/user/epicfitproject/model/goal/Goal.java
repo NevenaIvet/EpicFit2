@@ -1,5 +1,7 @@
 package com.example.user.epicfitproject.model.goal;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
@@ -14,28 +16,16 @@ import java.util.List;
 /**
  * Created by user on 3.9.2016 г..
  */
-public class Goal {
+public class Goal{
 
 
     private String startDate;
     private String endDate;
     private List<ActualExercise> exercises=new ArrayList<>();
-    public Goal(String startDate,String endDate){
-        this.startDate=startDate;
-        this.endDate=endDate;
-    }
 
     //priemam string zashtoto ot view shte e po -lesno da se vzeeme
     public Goal(String startDate,String endDate,List<ActualExercise> exercises){
-//        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
-//
-//        try {
-//            this.startDate = ft.parse(startDate);
-//            this.endDate=ft.parse(endDate);
-//
-//        }catch (ParseException e) {
-//            Log.e("Date"," problems with parsing date in the constructor of object goal");
-//        }
+
         this.exercises=exercises;
         this.startDate=startDate;
         this.endDate=endDate;
@@ -85,4 +75,10 @@ public class Goal {
     public String getStartDate() {
         return startDate;
     }
+
+    public List<ActualExercise> getExercises() {
+        return exercises;
+    }
+
+
 }

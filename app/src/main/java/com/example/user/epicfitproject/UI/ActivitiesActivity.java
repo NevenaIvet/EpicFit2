@@ -7,19 +7,23 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.model.exercise.ActualExercise;
+
+import java.util.HashMap;
 
 public class ActivitiesActivity extends AppCompatActivity {
     private Button upperBody;
     private Button lowerBody;
-
     private Button cardio;
     private Button hiit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
-        //tuk ima dostup do datata startDate i endDate ot predniq intent
+
+
         upperBody = (Button) findViewById(R.id.button_upper_body);
         lowerBody = (Button) findViewById(R.id.button_lower_body);
 
@@ -37,7 +41,6 @@ public class ActivitiesActivity extends AppCompatActivity {
         };
         upperBody.setOnClickListener(onClickListener);
         lowerBody.setOnClickListener(onClickListener);
-
         cardio.setOnClickListener(onClickListener);
         hiit.setOnClickListener(onClickListener);
 

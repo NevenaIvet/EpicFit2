@@ -1,10 +1,13 @@
 package com.example.user.epicfitproject.UI;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,6 +17,9 @@ import android.widget.Toast;
 import com.example.user.epicfitproject.NavigationMSG;
 import com.example.user.epicfitproject.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -50,7 +56,7 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
                 year=0;
                 showMeCalendar(view);
                // startDate=cHelp;
-                endDateTV.setText(day+"/"+(month+1)+"/"+year);
+              //  endDateTV.setText(day+"/"+(month+1)+"/"+year);
             }
         });
         from.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +67,7 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
                 showMeCalendar(view);
               //  startDate=cHelp;
                 //String s = year+"/"+month+1+"/"+day;
-                startDateTV.setText(day+"/"+(month+1)+"/"+year);
+                //startDateTV.setText(day+"/"+(month+1)+"/"+year);
 
             }
         });
@@ -69,11 +75,24 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  NavigationMSG msgDialog= new NavigationMSG();
-               // FragmentManager fm = getSupportFragmentManager();
                 Intent intent = new Intent(GoalActivity.this, ActivitiesActivity.class);
+                intent.putExtra("endDate",endDateTV.getText().toString());
+                intent.putExtra("startDate",startDateTV.getText().toString());
+                SharedPreferences sp = getSharedPreferences("activeGoal", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                JSONObject obj=new JSONObject();
+                try {
+                    obj.put("startDate",startDateTV.getText().toString());
+                    obj.put("endDate",endDateTV.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                editor.putString("goal",obj.toString());
+                Log.e("ivet",obj.toString());
+                editor.commit();
                 startActivity(intent);
-                //TODO save the time in shared preffs
+
+
 
                 //msgDialog.changeText("Now add all of your favourite exercises");
                // msgDialog.show(fm, "gotIt");

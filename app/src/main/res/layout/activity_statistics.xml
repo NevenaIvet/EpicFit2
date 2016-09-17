@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="35sp"
         android:gravity="center"
+        android:id="@+id/"
         android:text="TITLE goal name"/>
 
 

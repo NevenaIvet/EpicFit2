@@ -3,6 +3,7 @@ package com.example.user.epicfitproject;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
             super(itemView);
             nameOfGoal = (TextView) itemView.findViewById(R.id.active_goal);
             listRow = (LinearLayout) itemView.findViewById(R.id.layout_active_goal);
+            Log.e("ivet","suzdava se goalviewholder ");
 
         }
     }

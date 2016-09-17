@@ -6,11 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.user.epicfitproject.ActiveGoals;
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.model.exercise.ActualExercise;
 
 public class MainMenuActivity extends AppCompatActivity {
     private Button profile ;
     private  Button activities;
+    private Button activeGoal;
+    private Button progress;
+
+    private ActualExercise e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +38,20 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        activeGoal = (Button) findViewById(R.id.button_goals);
+        activeGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, ActiveGoals.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+           // Intent intent = new Intent(MainMenuActivity.this,ActiveGoals.class);
+            //otivam a goals tam veche she suzdam celta i she q zapisha i pokaja
+
+
     }
 }

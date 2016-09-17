@@ -44,11 +44,9 @@ public class AthleteActivity extends AppCompatActivity {
     private Switch BMISwitch;
     private ArrayList<Double> doubleValues;
     private TextView BMIinfo;
-
     private NumberPicker pickHeight;
     private NumberPicker pickWeight;
     private String [] heights;
-    //private  Athlete athlete=null;//tuka ne e taka
 
 
 

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by user on 3.9.2016 г..
  */
-public class ActualExercise extends Exercise{
+public class ActualExercise extends Exercise {
     int repetitions;
     int sets;
 
@@ -48,5 +48,13 @@ public class ActualExercise extends Exercise{
 
     public void setSets(int sets) {
         this.sets = sets;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public int getRepetitions() {
+        return repetitions;
     }
 }
