@@ -48,12 +48,13 @@ public class ExerciseFragment extends Fragment {
         numberOfReps = (TextView) view.findViewById(R.id.number_of_reps_tv);
         numberOFSets = (TextView) view.findViewById(R.id.number_of_sets_tv);
 
-       String n = getArguments().getString("name");
-        int sets= getArguments().getInt("sets");
-        int rep = getArguments().getInt("reps");
-        nameOFExercise.setText(n);
-        numberOfReps.setText(Integer.toString(rep));
-        numberOFSets.setText(Integer.toString(sets));
+        if(getArguments().getParcelable("exercise")!=null){
+            ActualExercise e = getArguments().getParcelable("exercise");
+            nameOFExercise.setText(e.getName());
+            numberOfReps.setText(Integer.toString(e.getRepetitions()));
+            numberOFSets.setText(Integer.toString(e.getSets()));
+        }
+
 
         return view;
     }

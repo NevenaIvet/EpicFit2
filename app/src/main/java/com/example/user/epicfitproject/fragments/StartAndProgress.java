@@ -22,7 +22,7 @@ IChoice activity;
     Button progress;
 
     public interface IChoice{
-        public void chosen();
+        public void chosen(View view);
     }
     public StartAndProgress() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ IChoice activity;
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.chosen();
+                activity.chosen(view);
             }
         });
         return v;

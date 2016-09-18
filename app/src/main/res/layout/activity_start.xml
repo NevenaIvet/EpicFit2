@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/darkbg"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
@@ -13,13 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Workout"
+        android:textColor="@color/greenOne"
         android:textSize="35sp"
         android:gravity="center"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:id="@+id/replace_here"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:id="@+id/second_fragment_here">
 
     </FrameLayout>
 

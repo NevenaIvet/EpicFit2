@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.UserEntersDataExercise;
 import com.example.user.epicfitproject.fragments.ExerciseFragment;
 import com.example.user.epicfitproject.fragments.StartAndProgress;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
@@ -28,14 +29,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Start extends AppCompatActivity implements ExerciseFragment.Communicator,StartAndProgress.IChoice{
+public class Start extends AppCompatActivity implements ExerciseFragment.Communicator,StartAndProgress.IChoice,UserEntersDataExercise.IUserInteract{
 
     private Goal goal;
-    static  int indexes;
+   private  static  int sizeOfList;
+    private static int position;
     Fragment fragment;
     HashMap<String,ActualExercise> helper;
     ArrayList<ActualExercise> exercisesToDo;
     FrameLayout replaceable;
+    FrameLayout replaceSecondFragment;
+
 
     Bundle data;
 
@@ -44,6 +48,7 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         replaceable = (FrameLayout) findViewById(R.id.replace_here);
+        replaceSecondFragment = (FrameLayout) findViewById(R.id.second_fragment_here);
         String  forName = getSharedPreferences("activeGoal", Context.MODE_PRIVATE).getString("goal","nope");
                 if(!forName.equals("nope")) {
                     helper = ExerciseManager.getInstance(Start.this).getExercises();
@@ -51,37 +56,82 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                     for(ActualExercise e :helper.values()){
                         exercisesToDo.add(e);
                     }
-        fragment=new StartAndProgress();
+                    sizeOfList = exercisesToDo.size()-1;
+                    position=0;
+                      fragment=new StartAndProgress();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.replace_here,fragment);
 
         ft.commit();
 
 
-    }
+         }
 
     }
+
+
 
     @Override
-    public void chosen() {
-        //replace fragment here
-        Fragment start = new ExerciseFragment();
-        data= new Bundle();
+    public void chosen(View v) {
+
+        switch (v.getId()){
+            case R.id.begin_workout:
+                Fragment start = new ExerciseFragment();
+                data= new Bundle();
+                data.putParcelable("exercise",exercisesToDo.get(position));
+                start.setArguments(data);
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.replace_here, start);
+                ft.addToBackStack(null);
+                ft.commit();
+                FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
+                tr.replace(R.id.second_fragment_here,new UserEntersDataExercise());
+                tr.addToBackStack(null);
+                tr.commit();
+                break;
+            case R.id.progress_button:
+                //tuk she vikam progresa ...
+                break;
+        }
+
+
         //data.putParcelable("exercise",exercisesToDo.get(1));
         //tuk zadavam prosto stoinost za da vidq dali raboti
         //trqbva da si predavam samiq obekt
-        data.putString("name",exercisesToDo.get(1).getName());
-        data.putInt("sets",exercisesToDo.get(1).getSets());
-        data.putInt("reps",exercisesToDo.get(1).getRepetitions());
-        start.setArguments(data);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.start_and_progress_fragment, start);
-        ft.addToBackStack(null);
-        ft.commit();
+
     }
 
     @Override
     public void changeWithNext() {
         //update the bundle and start fragment again
+        //ststichna za goleminata na lista -1
+        //statichna za pazene na tekushtata mi poziciq
+        if(position<=exercisesToDo.size()){
+            data= new Bundle();
+            data.putParcelable("exercise",exercisesToDo.get(position));
+            Fragment next =new ExerciseFragment();
+            next.setArguments(data);
+            FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
+            tr.replace(R.id.replace_here,next);
+            tr.addToBackStack(null);
+            tr.commit();
+        }else{
+            Toast.makeText(Start.this,"no more exercises",Toast.LENGTH_SHORT).show();
+        }
+
+        //ako ima oshte neshta za pokazvane
+        //else dai nekuv fragment sus suobshtenie
+    }
+
+    @Override
+    public void dataEntered(String s1, String s2) {
+        //sravni s reps i sets na taq poziciq na koqto beshe izvikan fragmenta
+        //tuk she e changeWithNext
+        String saveSets= s1;
+        String saveReps=s2;
+        ++position;
+        changeWithNext();
+
+
     }
 }

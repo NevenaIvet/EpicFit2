@@ -11,11 +11,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/begin_workout"
+                android:textColor="@color/greenOne"
+                android:background="@drawable/rectangle"
                 android:text="Begin"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/progress_button"
+                android:background="@drawable/rectangle"
+                android:textColor="@color/greenOne"
                 android:layout_weight="1"
                 android:text="Progress"/>
 

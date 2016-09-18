@@ -8,13 +8,15 @@ import android.os.Parcelable;
  */
     public  class Exercise implements IUpperBody,ILowerBody,IHiit,ICardio,Comparable<Exercise>,Parcelable {
 
-    private int picture;
-    private String name;
-    private String url;
-    private int information;
+    protected int picture;
+    protected String name;
+    protected String url;
+    protected int information;
 
 
+    public Exercise() {
 
+    }
 
     public Exercise(int picture, String name, String url, int information) {
         this.picture = picture;
