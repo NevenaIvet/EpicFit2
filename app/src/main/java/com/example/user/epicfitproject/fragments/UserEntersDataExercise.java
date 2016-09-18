@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject;
+package com.example.user.epicfitproject.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.user.epicfitproject.R;
 
 
 public class UserEntersDataExercise extends Fragment {
@@ -43,6 +45,7 @@ public class UserEntersDataExercise extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO samo za celi chisla
                 String setsH = sets.getText().toString().trim();
                 String repsH = reps.getText().toString().trim();
                 if(setsH.isEmpty()){
