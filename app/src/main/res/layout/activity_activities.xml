@@ -24,10 +24,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rectangle_for_recycler"
+            android:background="@drawable/rectangle"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:textColor="@color/greenFour"
+            android:textColor="@color/greenOne"
 
             android:id="@+id/button_upper_body"
             android:text="upper boddy"
@@ -41,7 +41,7 @@
             android:textColor="@color/greenOne"
             android:text="lower body"
             android:id="@+id/button_lower_body"
-            android:background="@drawable/rectangle_for_recycler"
+            android:background="@drawable/rectangle"
             android:layout_gravity="center_horizontal" />
 
         <Button
@@ -51,7 +51,7 @@
             android:text="cardio"
             android:textColor="@color/greenOne"
             android:textSize="20sp"
-            android:background="@drawable/rectangle_for_recycler"
+            android:background="@drawable/rectangle"
             android:id="@+id/button_cardio"
             android:layout_gravity="center_horizontal" />
 
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="20sp"
-            android:background="@drawable/rectangle_for_recycler"
+            android:background="@drawable/rectangle"
             android:textColor="@color/greenOne"
             android:layout_weight="1"
             android:text="hiit"

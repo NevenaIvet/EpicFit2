@@ -81,7 +81,7 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
 
     @Override
     public void onNextClicked(int set,int rep ) {
-
+        setResult(66);
         actualExercise=new ActualExercise(exercise.getPicture(),exercise.getName(),exercise.getUrl(),exercise.getInformation(),rep,set);
         if(ExerciseManager.getInstance(this).existsExercise(actualExercise.getName())){
             Toast.makeText(ExerciseActivity.this,"Exercise was already added to goal",Toast.LENGTH_SHORT).show();

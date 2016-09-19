@@ -98,7 +98,7 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             case R.id.progress_button:
                 String json = getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
                 if(!json.equals("nope")){
-                    layout.setBackgroundColor(Color.LTGRAY);
+//                    layout.setBackgroundColor(Color.LTGRAY);
                     Fragment f = new Chart();
                     FragmentTransaction fp = getSupportFragmentManager().beginTransaction();
                     fp.replace(R.id.replace_here,f);

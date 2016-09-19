@@ -3,6 +3,13 @@ package com.example.user.epicfitproject.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,16 +23,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.fragments.ChangeUsernameFragment;
 import com.example.user.epicfitproject.model.user.UsersManager;
 import com.example.user.epicfitproject.model.athlete.Athlete;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class AthleteActivity extends AppCompatActivity {
+public class AthleteActivity extends AppCompatActivity implements ChangeUsernameFragment.IUsernameChanged {
     private TextView heading;
     private TextView username;
     private TextView gender;
@@ -37,7 +47,7 @@ public class AthleteActivity extends AppCompatActivity {
     private Button addGoal;
     private ImageView profilePicture;
     private ImageButton changePenUsernameButton;
-    private ImageButton changePenPictureButton;
+
     private Switch genderSwitch;
     private Switch BMISwitch;
     private ArrayList<Double> doubleValues;
@@ -45,7 +55,9 @@ public class AthleteActivity extends AppCompatActivity {
     private NumberPicker pickHeight;
     private NumberPicker pickWeight;
     private String [] heights;
-
+    private static final int PICK_IMAGE =55;
+    private Athlete athlete;
+    private static final int RESULT_GOAL_TIME_ADDED=22;
 
 
 
@@ -125,14 +137,30 @@ public class AthleteActivity extends AppCompatActivity {
         addGoal = (Button) findViewById(R.id.addGoalButton);
 
         changePenUsernameButton = (ImageButton) findViewById(R.id.changeUsernameButton);
+
         changePenUsernameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               // UsersManager.getInstance(AthleteActivity.this).getUser(username.getText().toString()).setUsername("jdkfhgkfdhk");
                 //TODO see this and fix
+
+
+
+                DialogFragment fragment = new ChangeUsernameFragment();
+                FragmentManager fm = getSupportFragmentManager();
+                fragment.show(fm, "changeUsernameFragment");
+
+               //TODO add dialog fragment for change username
             }
         });
         profilePicture = (ImageView) findViewById(R.id.profilePicture);
+        profilePicture.setBackgroundResource(R.drawable.fit);
+        profilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGallery();
+            }
+        });
         genderSwitch= (Switch) findViewById(R.id.genderSwitch);
         genderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -251,7 +279,7 @@ public class AthleteActivity extends AppCompatActivity {
                 double weightD= Double.parseDouble(weightH);
                 double heightD = Double.parseDouble(heightH);
 
-               Athlete athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
+               athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
                 SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 JSONObject obj = new JSONObject();
@@ -275,7 +303,7 @@ public class AthleteActivity extends AppCompatActivity {
                 editor.commit();
 
                 Intent intent = new Intent(AthleteActivity.this, GoalActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,RESULT_GOAL_TIME_ADDED);
             }
         });
 
@@ -283,5 +311,40 @@ public class AthleteActivity extends AppCompatActivity {
     private  static double calculatorForBMI(Double height, Double weight){
         return weight/(height*height);
     }
+    private void openGallery() {
+        Intent gallery =
+                new Intent();
+        gallery.addCategory(Intent. ACTION_GET_CONTENT);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == PICK_IMAGE) {
+            Uri uri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                // Log.d(TAG, String.valueOf(bitmap));
+
+                ImageView imageView = (ImageView) findViewById(R.id.profilePicture);
+                imageView.setImageBitmap(bitmap);
+                //TODO zapazi s novata kartinka
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (resultCode==RESULT_GOAL_TIME_ADDED){
+            finish();
+        }
+    }
+
+    @Override
+    public void changedUsername(String name) {
+        username.setText(name);
+    }
 }

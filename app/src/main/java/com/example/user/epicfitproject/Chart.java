@@ -2,7 +2,9 @@ package com.example.user.epicfitproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Dimension;
@@ -11,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.db.chart.model.LineSet;
 import com.db.chart.model.Point;
+import com.db.chart.view.AxisController;
+import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
 import com.example.user.epicfitproject.model.exercise.ActualExercise;
 import com.example.user.epicfitproject.model.exercise.ExerciseManager;
@@ -43,12 +48,17 @@ public class Chart extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //TODO add dataset za principno kolko sa v celta
+
+
         View v= inflater.inflate(R.layout.fragment_chart, container, false);
+
         chart = (LineChartView) v.findViewById(R.id.linechart);
+        //proverka dali ne e e json-a po podrabirane
         exercises = new ArrayList<>();
         String json = this.getActivity().getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
+
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         try {
             JSONArray jsonArr = new JSONArray(json);
             for(int i = 0; i < jsonArr.length(); i++){
@@ -75,8 +85,9 @@ public class Chart extends Fragment {
             dataset.addPoint(new Point(labels[i], values[i]));
         }
 
-        dataset.setDotsColor(Color.MAGENTA);
-        dataset.setDotsStrokeColor(Color.MAGENTA);
+        dataset.setDotsColor(Color.GREEN);
+        dataset.setDotsStrokeColor(Color.GREEN);
+        dataset.setColor(Color.GREEN);
         dataset.setSmooth(true);
         dataset.beginAt(0);
         dataset.endAt(exercises.size());
@@ -91,11 +102,25 @@ public class Chart extends Fragment {
         for(int i = 0 ; i<exercises.size() ;i++){
             dataset2.addPoint(new Point(labels[i], valuesInOriginal[i]));
         }
-        dataset2.setDotsColor(Color.GREEN);
-        dataset2.setSmooth(true);
+        for(int i = 0;i<values.length;i++){
+            if(values[i]==valuesInOriginal[i]){
+                Toast.makeText(this.getActivity(),"Goal completed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        dataset2.setDotsColor(Color.RED);
+        dataset2.setColor(Color.RED);
+        dataset2.setDotsStrokeColor(Color.RED);
+        float[] dashes = new float[4];
+        for (int i = 0;i<dashes.length;i++){
+            dashes[i]= (float) 5.5;
+        }
+        dataset2.setDashed(dashes);
         dataset2.beginAt(0);
-        dataset2.endAt(exercises.size());
+        //5 ili size
+        dataset2.endAt(original.size());
         chart.addData(dataset2);
+        chart.setYAxis(false);
+        chart.setYLabels(AxisController.LabelPosition.NONE);
 
         chart.show();
         //tuka ima mn neshta

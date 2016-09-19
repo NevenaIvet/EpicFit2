@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final int RESULT_REG_SUCCESSFULL = 10;
+    private static final int RESULT_REG_SUCCESSFULL = 14;
     private EditText username;
     private EditText password;
     private EditText confirmPass;

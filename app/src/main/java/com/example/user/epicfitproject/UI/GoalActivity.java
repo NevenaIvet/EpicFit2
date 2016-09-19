@@ -32,6 +32,7 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
     private Calendar endDate;
     Calendar cHelp;
     private static  final int GOAL_UPDATED=55;
+    private static  final int EXERCISES_ADDED = 66;
 
 
     @Override
@@ -71,6 +72,7 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setResult(22);
                 Intent intent = new Intent(GoalActivity.this, ActivitiesActivity.class);
                 intent.putExtra("endDate",endDateTV.getText().toString());
                 intent.putExtra("startDate",startDateTV.getText().toString());
@@ -86,7 +88,7 @@ public class GoalActivity extends AppCompatActivity implements DatePickerDialog.
                 editor.putString("goal",obj.toString());
                 Log.e("ivet",obj.toString());
                 editor.commit();
-                startActivity(intent);
+                startActivityForResult(intent,66);
 
 
 

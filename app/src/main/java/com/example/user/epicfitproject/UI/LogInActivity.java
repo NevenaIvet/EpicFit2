@@ -18,6 +18,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button register;
+    private static final int REG_SUCCESS=14;
     private CheckBox rememberMeCheckBox;
     private Button login;
 //prommeni da se vliza s email i v xmla sloji da e email
@@ -48,7 +49,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent goRegister = new Intent(LogInActivity.this, RegisterActivity.class);
                 email.setError(null);
-                startActivity(goRegister);
+                startActivityForResult(goRegister,REG_SUCCESS);
 
             }
         });
@@ -103,7 +104,16 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityReenter(int resultCode, Intent data) {
-        super.onActivityReenter(resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REG_SUCCESS){
+            SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preffs.edit();
+            editor.putString("loggedUser",email.getText().toString().trim());
+            editor.commit();
+            Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+            intent.putExtra("LoggedUser",email.getText().toString().trim());
+            startActivity(intent);
+            finish();
+        }
     }
 }

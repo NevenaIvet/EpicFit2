@@ -7,7 +7,10 @@
     <com.db.chart.view.LineChartView
         xmlns:chart="http://schemas.android.com/apk/res-auto"
         android:id="@+id/linechart"
+        chart:chart_labelColor="@color/greenOne"
+        chart:chart_shadowColor="@color/greenFive"
+        android:background="@null"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
