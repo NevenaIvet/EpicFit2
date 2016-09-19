@@ -36,14 +36,13 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
    private  static  int sizeOfList;
     private static int position;
     Fragment fragment;
+    Fragment fragment2;
     HashMap<String,ActualExercise> helper;
     ArrayList<ActualExercise> exercisesDone;
     ArrayList<ActualExercise> exercisesToDo;
     FrameLayout replaceable;
     FrameLayout replaceSecondFragment;
     LinearLayout layout ;
-
-
     Bundle data;
 
     @Override
@@ -67,15 +66,9 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                       fragment=new StartAndProgress();
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.replace(R.id.replace_here,fragment);
-                    ft.addToBackStack(null);
-
         ft.commit();
-
-
          }
-
     }
-
 
 
     @Override
@@ -88,58 +81,49 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                 start.setArguments(data);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.replace_here, start);
-                ft.addToBackStack(null);
                 ft.commit();
                 FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
-                tr.replace(R.id.second_fragment_here,new UserEntersDataExercise());
-                tr.addToBackStack(null);
+                fragment2 = new UserEntersDataExercise();
+                tr.replace(R.id.second_fragment_here,fragment2);
                 tr.commit();
                 break;
             case R.id.progress_button:
                 String json = getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
                 if(!json.equals("nope")){
-//                    layout.setBackgroundColor(Color.LTGRAY);
                     Fragment f = new Chart();
                     FragmentTransaction fp = getSupportFragmentManager().beginTransaction();
                     fp.replace(R.id.replace_here,f);
-                    fp.addToBackStack(null);
                     fp.commit();
                 }else{
                     Toast.makeText(Start.this,"Can't show progress no exercises done yet",Toast.LENGTH_SHORT).show();
                 }
-
         }
-
-
-        //data.putParcelable("exercise",exercisesToDo.get(1));
-        //tuk zadavam prosto stoinost za da vidq dali raboti
-        //trqbva da si predavam samiq obekt
-
     }
 
     @Override
     public void changeWithNext() {
-        //update the bundle and start fragment again
-        //ststichna za goleminata na lista -1
-        //statichna za pazene na tekushtata mi poziciq
         if(position<exercisesToDo.size()){
             data= new Bundle();
             data.putParcelable("exercise",exercisesToDo.get(position));
-            Fragment next =new ExerciseFragment();
-            next.setArguments(data);
+            fragment =new ExerciseFragment();
+            fragment.setArguments(data);
             FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
-            tr.replace(R.id.replace_here,next);
-            tr.addToBackStack(null);
+            tr.replace(R.id.replace_here,fragment);
+            fragment2 = new UserEntersDataExercise();
+            tr.replace(R.id.second_fragment_here,fragment2);
             tr.commit();
         }else{
             Toast.makeText(Start.this,"no more exercises",Toast.LENGTH_SHORT).show();
-            //save in shared
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            getSupportFragmentManager().beginTransaction().remove(fragment2).commit();
+            finish();
+
+
+        }
             SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             JSONArray arr = new JSONArray();
             try {
-
-
                 for (ActualExercise e : exercisesDone) {
                     JSONObject o = new JSONObject();
                     o.put("picture", e.getPicture());
@@ -151,7 +135,6 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                     arr.put(o);
                 }
             }catch(JSONException e) {
-
                 Log.e("ivet", e.getMessage());
             }
             String key = "done";
@@ -161,22 +144,19 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             editor.commit();
         }
 
-        //ako ima oshte neshta za pokazvane
-        //else dai nekuv fragment sus suobshtenie
-    }
+
+
 
     @Override
     public void dataEntered(String s1, String s2) {
         //sravni s reps i sets na taq poziciq na koqto beshe izvikan fragmenta
         //tuk she e changeWithNext
-        String saveSets= s1;
-        String saveReps=s2;
-        exercisesDone.get(position).setRepetitions(Integer.parseInt(saveReps));
-        exercisesDone.get(position).setSets(Integer.parseInt(saveSets));
-        ++position;
-        changeWithNext();
-
-
+      if(!(s1==null||s2==null)){
+          exercisesDone.get(position).setRepetitions(Integer.parseInt(s2));
+          exercisesDone.get(position).setSets(Integer.parseInt(s1));
+          ++position;
+          changeWithNext();
+      }
     }
 
     @Override

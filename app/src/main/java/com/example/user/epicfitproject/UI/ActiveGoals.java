@@ -47,16 +47,11 @@ public class ActiveGoals extends AppCompatActivity {
             }
         });
         fillWithData();
-
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view_goals);
         goalAdapter= new GoalsAdapter(this,goal);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-
         recyclerView.setAdapter(goalAdapter);
     }
 
@@ -65,7 +60,6 @@ public class ActiveGoals extends AppCompatActivity {
         if(!forName.equals("nope")){
             String startDate=null;
             String endDate=null;
-            //tuk obekt i mu vzimam
             try {
                 JSONObject o = new JSONObject(forName);
                 startDate=o.getString("startDate");
@@ -74,24 +68,16 @@ public class ActiveGoals extends AppCompatActivity {
                 e.printStackTrace();
             }
             HashMap<String,ActualExercise> helper = new HashMap<>(ExerciseManager.getInstance(this).getExercises());
-            Log.e("ivet","vlizmam vsichki uprajneniq kooito sa dobaveni -"+helper.size());
+            Log.e("TAG","broi dobaveni uprajneniq -"+helper.size());
             exercises= new ArrayList<>();
             for (ActualExercise ex:helper.values()){
                 exercises.add(ex);
-                Log.e("ivet","dobavqm v celta "+ex.getName());
+                Log.e("TAG","dobavqm v celta "+ex.getName());
             }
             goal.add(new Goal(startDate,endDate,exercises));
-            Log.e("ivet","dobaven e obekt cel");
-
-
-
         }else{
-            Log.e("ivet","problem s preffs");
+            Log.e("TAG","problem s preffs");
         }
-
-
-
-
     }
 
     @Override
@@ -99,7 +85,6 @@ public class ActiveGoals extends AppCompatActivity {
         if(resultCode==ADDED_NEW_GOAL_OK){
             fillWithData();
             //tova e refresh edin vid
-
         }
     }
 }

@@ -45,36 +45,45 @@ public class UserEntersDataExercise extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO samo za celi chisla
-                String setsH = sets.getText().toString().trim();
-                String repsH = reps.getText().toString().trim();
+                final  String setsH = sets.getText().toString().trim();
+                final String repsH = reps.getText().toString().trim();
                 if(setsH.isEmpty()){
                     sets.setError("Required");
                     sets.requestFocus();
-
                     return;
                 }
                 if(repsH.isEmpty()){
                     reps.setError("Required");
                     reps.requestFocus();
+                    return;
+                }
 
-                    return;
+                if(!(setsH.isEmpty()&&repsH.isEmpty())){
+                    int repHelper = Integer.parseInt(setsH);
+                    int setHelper = Integer.parseInt(repsH);
+                    if(repHelper<0){
+                        sets.setError("Negative values are not acceptable");
+                        sets.setText(null);
+                        sets.requestFocus();
+                        return;
+                    }
+                    if(setHelper<0){
+                        reps.setError("Negative values are not acceptable");
+                        reps.setText(null);
+                        reps.requestFocus();
+
+                        return;
+                    }
+                    if(repHelper==0&&setHelper>0){
+                        reps.setError("Repeats are 0");
+                        reps.setText(null);
+                        reps.requestFocus();
+                    }
+
+                    activity.dataEntered(setsH,repsH);
                 }
-                if(Integer.parseInt(setsH)<0){
-                    sets.setError("Negative values are not acceptable");
-                    sets.setText(null);
-                    sets.requestFocus();
-                    setsH="";
-                    return;
-                }
-                if(Integer.parseInt(repsH)<0){
-                    reps.setError("Negative values are not acceptable");
-                    reps.setText(null);
-                    reps.requestFocus();
-                    repsH="";
-                    return;
-                }
-                activity.dataEntered(setsH,repsH);
+
+
             }
         });
         return v ;

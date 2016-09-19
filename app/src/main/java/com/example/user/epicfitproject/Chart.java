@@ -35,30 +35,22 @@ public class Chart extends Fragment {
     IShowChart activity;
     LineChartView chart;
     private ArrayList<ActualExercise> exercises ;
+
     public interface IShowChart{
         void showChart();
     }
 
     public Chart() {
-        // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         View v= inflater.inflate(R.layout.fragment_chart, container, false);
-
         chart = (LineChartView) v.findViewById(R.id.linechart);
-        //proverka dali ne e e json-a po podrabirane
         exercises = new ArrayList<>();
         String json = this.getActivity().getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
-
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
         try {
             JSONArray jsonArr = new JSONArray(json);
             for(int i = 0; i < jsonArr.length(); i++){
@@ -68,57 +60,55 @@ public class Chart extends Fragment {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-
         }
-        String[] labels = new String[exercises.size()];
+        String[] namesExercises = new String[exercises.size()];
        for(int i=0;i<exercises.size();i++){
-           labels[i]=exercises.get(i).getName();
+           namesExercises[i]=exercises.get(i).getName();
        }
-        float[] values = new float[exercises.size()];
+        float[] doneExercisesValues = new float[exercises.size()];
         for(int i=0;i<exercises.size();i++){
             int sumReps=calculatedAllRepeats(exercises.get(i));
-            values[i]=sumReps;
+            doneExercisesValues[i]=sumReps;
         }
-
-        LineSet dataset = new LineSet(labels, values);
+        LineSet doneData = new LineSet(namesExercises, doneExercisesValues);
         for(int i = 0 ; i<exercises.size() ;i++){
-            dataset.addPoint(new Point(labels[i], values[i]));
+            //doneData.addPoint(new Point(namesExercises[i], doneExercisesValues[i]));
+            doneData.addPoint(namesExercises[i],doneExercisesValues[i]);
         }
-
-        dataset.setDotsColor(Color.GREEN);
-        dataset.setDotsStrokeColor(Color.GREEN);
-        dataset.setColor(Color.GREEN);
-        dataset.setSmooth(true);
-        dataset.beginAt(0);
-        dataset.endAt(exercises.size());
-        chart.addData(dataset);
-        ArrayList<ActualExercise> original=new ArrayList<>(ExerciseManager.getInstance(this.getActivity()).getExercises().values()) ;
-        float[] valuesInOriginal = new float[original.size()];
-        for(int i=0;i<original.size();i++){
-            int sumReps=calculatedAllRepeats(original.get(i));
+        doneData.setDotsColor(Color.GREEN);
+        doneData.setDotsStrokeColor(Color.GREEN);
+        doneData.setColor(Color.GREEN);
+        doneData.setSmooth(true);
+        doneData.beginAt(0);
+        doneData.endAt(exercises.size());
+        chart.addData(doneData);
+        ArrayList<ActualExercise> exercisesInGoal=new ArrayList<>(ExerciseManager.getInstance(this.getActivity()).getExercises().values()) ;
+        float[] valuesInOriginal = new float[exercisesInGoal.size()];
+        for(int i=0;i<exercisesInGoal.size();i++){
+            int sumReps=calculatedAllRepeats(exercisesInGoal.get(i));
             valuesInOriginal[i]=sumReps;
         }
-        LineSet dataset2 = new LineSet(labels, valuesInOriginal);
+        LineSet goalData = new LineSet(namesExercises, valuesInOriginal);
         for(int i = 0 ; i<exercises.size() ;i++){
-            dataset2.addPoint(new Point(labels[i], valuesInOriginal[i]));
+           // goalData.addPoint(new Point(namesExercises[i], valuesInOriginal[i]));
+            goalData.addPoint(namesExercises[i],valuesInOriginal[i]);
         }
-        for(int i = 0;i<values.length;i++){
-            if(values[i]==valuesInOriginal[i]){
+        for(int i = 0;i<doneExercisesValues.length;i++){
+            if(doneExercisesValues[i]==valuesInOriginal[i]){
                 Toast.makeText(this.getActivity(),"Goal completed", Toast.LENGTH_SHORT).show();
             }
         }
-        dataset2.setDotsColor(Color.RED);
-        dataset2.setColor(Color.RED);
-        dataset2.setDotsStrokeColor(Color.RED);
-        float[] dashes = new float[4];
-        for (int i = 0;i<dashes.length;i++){
-            dashes[i]= (float) 5.5;
+        goalData.setDotsColor(Color.RED);
+        goalData.setColor(Color.RED);
+        goalData.setDotsStrokeColor(Color.RED);
+        float[] dashesForGoalLine = new float[4];
+        for (int i = 0;i<dashesForGoalLine.length;i++){
+            dashesForGoalLine[i]= (float) 5.5;
         }
-        dataset2.setDashed(dashes);
-        dataset2.beginAt(0);
-        //5 ili size
-        dataset2.endAt(original.size());
-        chart.addData(dataset2);
+        goalData.setDashed(dashesForGoalLine);
+        goalData.beginAt(0);
+        goalData.endAt(exercisesInGoal.size());
+        chart.addData(goalData);
         chart.setYAxis(false);
         chart.setYLabels(AxisController.LabelPosition.NONE);
 
