@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.user.epicfitproject.ChartInformation;
+import com.example.user.epicfitproject.fragments.ChartInformation;
 import com.example.user.epicfitproject.fragments.Chart;
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.fragments.UserEntersDataExercise;
@@ -32,7 +32,7 @@ import java.util.HashMap;
 
 public class Start extends AppCompatActivity implements ExerciseFragment.Communicator,StartAndProgress.IChoice,UserEntersDataExercise.IUserInteract,Chart.IShowChart {
 
-    private Goal goal;
+
    private  static  int sizeOfList;
     private static int position;
     Fragment fragment;
@@ -75,25 +75,28 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
     public void chosen(View v) {
         switch (v.getId()){
             case R.id.begin_workout:
-                SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
-                sp.edit().remove("done").commit();
-                Log.e("TAG","iztriti sa uprajneniqta ot prednata trenirovka");
-                fragment = new ExerciseFragment();
-                data= new Bundle();
-                data.putParcelable("exercise",exercisesToDo.get(position));
-                fragment.setArguments(data);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.replace_here, fragment);
-                ft.commit();
-                FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
-                fragment2 = new UserEntersDataExercise();
-                tr.replace(R.id.second_fragment_here,fragment2);
-                tr.commit();
+                if(exercisesToDo.size()>0) {
+                    SharedPreferences sp = getSharedPreferences("doneExercises", Context.MODE_PRIVATE);
+                    sp.edit().remove("done").commit();
+                    Log.e("TAG", "deleted exercises from last workout");
+                    fragment = new ExerciseFragment();
+                    data = new Bundle();
+                    data.putParcelable("exercise", exercisesToDo.get(position));
+                    fragment.setArguments(data);
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.replace_here, fragment);
+                    ft.commit();
+                    FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+                    fragment2 = new UserEntersDataExercise();
+                    tr.replace(R.id.second_fragment_here, fragment2);
+                    tr.commit();
+                }else{
+                    Toast.makeText(Start.this, "No exercises are available", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.progress_button:
                 String json = getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
                 if(!json.equals("nope")){
-
                     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                     Start.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                     fragment = new Chart();
@@ -103,6 +106,9 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                 }else{
                     Toast.makeText(Start.this,"Can't show progress no exercises done yet",Toast.LENGTH_SHORT).show();
                     return;
+                }
+                if(exercisesToDo.size()==0){
+                    Toast.makeText(Start.this, "No exercises are available", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -124,8 +130,7 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             Toast.makeText(Start.this,"no more exercises",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
             getSupportFragmentManager().beginTransaction().remove(fragment2).commit();
-            finish();
-
+            recreate();
         }
             SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
@@ -146,7 +151,7 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             }
             String key = "done";
             String value = arr.toString();
-            Log.e("TAG", "NAPRAVENI UPRAJNENIQ ZA TRENIROVKA "+value);
+            Log.e("TAG", "done exercises for training "+value);
             editor.putString(key,value);
             editor.commit();
         }

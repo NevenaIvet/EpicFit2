@@ -41,9 +41,6 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
         add = (Button) findViewById(R.id.addButton);
         moreText = (TextView) findViewById(R.id.additionText);
         video = (Button) findViewById(R.id.button_video);
-
-
-
         heading.setClickable(false);
         heading.setFocusable(false);
         info.setClickable(false);
@@ -53,7 +50,6 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
             heading.setText(exercise.getName());
             info.setText(exercise.getInformation());
             image.setBackgroundResource(exercise.getPicture());
-
         }
         video.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,35 +65,27 @@ public class ExerciseActivity extends AppCompatActivity implements RepetitionsSe
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 repsSetsFr=new RepetitionsSets();
                 FragmentManager fm = getSupportFragmentManager();
                 repsSetsFr.show(fm, "setsReps");
             }
         });
-
         }
 
     @Override
     public void onNextClicked(int set,int rep ) {
-        setResult(66);
         actualExercise=new ActualExercise(exercise.getPicture(),exercise.getName(),exercise.getUrl(),exercise.getInformation(),rep,set);
         if(ExerciseManager.getInstance(this).existsExercise(actualExercise.getName())){
             Toast.makeText(ExerciseActivity.this,"Exercise was already added to goal",Toast.LENGTH_SHORT).show();
             return;
         }else{
             ExerciseManager.getInstance(this).addExercise(this,actualExercise.getPicture(),actualExercise.getName(),actualExercise.getUrl(),actualExercise.getInformation(),actualExercise.getRepetitions(),actualExercise.getSets());
-            Log.e("ivet","uprajnenieto e dobaveno zashtoto go nqma v managera ");
+            Log.e("TAG","exercise is added in ExerciseManager since it does not exist there till now ");
         }
         Intent intent = new Intent(ExerciseActivity.this,ActivitiesActivity.class);
         startActivity(intent);
         finish();
-
-
     }
-
-
 }
 
 

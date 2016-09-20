@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.adapters.GoalsAdapter;
@@ -31,7 +32,7 @@ public class ActiveGoals extends AppCompatActivity {
     private GoalsAdapter goalAdapter;
     private List<ActualExercise> exercises;
     private Button newGoalButton;
-    private static  int ADDED_NEW_GOAL_OK;
+    private static  int ADDED_NEW_GOAL_OK=22;
     private Button delete;
 
 
@@ -48,10 +49,9 @@ public class ActiveGoals extends AppCompatActivity {
                 preferences.edit().remove("goal").commit();
                 SharedPreferences s = getSharedPreferences("exercisesGoal",Context.MODE_PRIVATE);
                 s.edit().remove("exercisesInGoal").commit();
-                Log.e("TAG","iztrito e vsichko");
-                //mai fill
-                fillWithData();
-
+                Log.e("TAG","goal deleted ,exercises deleted");
+                Toast.makeText(ActiveGoals.this, "Goals deleted", Toast.LENGTH_SHORT).show();
+               recreate();
             }
         });
         newGoalButton.setOnClickListener(new View.OnClickListener() {
@@ -83,23 +83,24 @@ public class ActiveGoals extends AppCompatActivity {
                 e.printStackTrace();
             }
             HashMap<String,ActualExercise> helper = new HashMap<>(ExerciseManager.getInstance(this).getExercises());
-            Log.e("TAG","broi dobaveni uprajneniq -"+helper.size());
+            Log.e("TAG","added exercises "+helper.size());
             exercises= new ArrayList<>();
             for (ActualExercise ex:helper.values()){
                 exercises.add(ex);
-                Log.e("TAG","dobavqm v celta "+ex.getName());
+                Log.e("TAG","adding exercise"+ex.getName()+" in goal");
             }
             goal.add(new Goal(startDate,endDate,exercises));
         }else{
-            Log.e("TAG","problem s preffs");
+            Log.e("TAG","Shared preferences problem");
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode==ADDED_NEW_GOAL_OK){
-            fillWithData();
-            //tova e refresh edin vid
+        if(requestCode==ADDED_NEW_GOAL_OK){
+            if(resultCode==ADDED_NEW_GOAL_OK){
+               recreate();
+            }
         }
     }
 }

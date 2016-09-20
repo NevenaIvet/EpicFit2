@@ -21,19 +21,16 @@ public class LogInActivity extends AppCompatActivity {
     private static final int REG_SUCCESS=14;
     private CheckBox rememberMeCheckBox;
     private Button login;
-//prommeni da se vliza s email i v xmla sloji da e email
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
-
         SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
         String loggedUserEmail = preffs.getString("loggedUser", "nope");
         if(!loggedUserEmail.equals("nope") && UsersManager.getInstance(this).existsUser(loggedUserEmail)){
             Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
-            intent.putExtra("loggedUser", loggedUserEmail );
             startActivity(intent);
         }
 
@@ -59,19 +56,16 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailH = email.getText().toString().trim();
                 String pass = password.getText().toString().trim();
-
                 if(emailH.isEmpty()){
                     email.setError("Username is compulsory");
                     email.requestFocus();
                     return;
                 }
-
                 if(pass.isEmpty()){
                     password.setError("Password is compulsory");
                     password.requestFocus();
                     return;
                 }
-
                 if(!UsersManager.getInstance(LogInActivity.this).validateLogin(emailH, pass)){
                     email.setError("Invalid credentials");
                     email.setText(null);
@@ -79,41 +73,28 @@ public class LogInActivity extends AppCompatActivity {
                     email.requestFocus();
                     return;
                 }
-                //sledvashtoto trqbva da se opravi
                 if(rememberMeCheckBox.isChecked()){
                     SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preffs.edit();
                     editor.putString("loggedUser", emailH);
                     editor.commit();
-                    Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
-                    intent.putExtra("LoggedUser",emailH);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    //ako ne e cheknato bi trqbvalo da mi sloji username v athlete activity
-                    //s usersmanagera i json trqbva da vzema username
-                    Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
-                    intent.putExtra("LoggedUser", emailH);
-
-                    startActivity(intent);
-                    finish();
                 }
-            }
+                Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
+                intent.putExtra("LoggedUser",emailH);
+                startActivity(intent);
+                finish();
+                }
         });
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==REG_SUCCESS){
-            SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preffs.edit();
-            editor.putString("loggedUser",email.getText().toString().trim());
-            editor.commit();
-            Intent intent = new Intent(LogInActivity.this, MainMenuActivity.class);
-            intent.putExtra("LoggedUser",email.getText().toString().trim());
-            startActivity(intent);
-            finish();
+            if(resultCode==REG_SUCCESS){
+                email.setText(getIntent().getStringExtra("email"));
+                password.setText(getIntent().getStringExtra("password"));
+                setResult(16);
+            }
         }
     }
 }

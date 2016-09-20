@@ -30,9 +30,6 @@ public class GoalActivity extends AppCompatActivity  {
     private Date startDateObj;
     private Date endDateObj;
     private TextView endDateTV;
-    private static  final int GOAL_UPDATED=55;
-    private static  final int EXERCISES_ADDED = 66;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +71,7 @@ public class GoalActivity extends AppCompatActivity  {
                     Toast.makeText(GoalActivity.this, "Incompatible dates", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 setResult(22);
-                Intent intent = new Intent(GoalActivity.this, ActivitiesActivity.class);
-                intent.putExtra("endDate",endDateTV.getText().toString());
-                intent.putExtra("startDate",startDateTV.getText().toString());
                 SharedPreferences sp = getSharedPreferences("activeGoal", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 JSONObject obj=new JSONObject();
@@ -91,7 +84,11 @@ public class GoalActivity extends AppCompatActivity  {
                 editor.putString("goal",obj.toString());
                 Log.e("TAG",obj.toString());
                 editor.commit();
-                startActivityForResult(intent,66);
+                Intent intent = new Intent(GoalActivity.this, ActivitiesActivity.class);
+                intent.putExtra("endDate",endDateTV.getText().toString());
+                intent.putExtra("startDate",startDateTV.getText().toString());
+                startActivity(intent);
+                finish();
             }
         });
 

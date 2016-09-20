@@ -56,22 +56,34 @@ public class RepetitionsSets extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String setsF=sets.getText().toString();
                 int setsH=Integer.parseInt(setsF);
-
                 String repsF=reps.getText().toString();
                 int repsH=Integer.parseInt(repsF);
-                if(setsH<1||setsF.isEmpty()){
-                    sets.setError("Not valid");
-                    sets.setText("1");
+                if(setsF.isEmpty()){
+                    sets.setError("set to 0");
+                    sets.setText("0");
                     setsF="0";
                     sets.requestFocus();
                     return;
                 }
-                if(repsF.isEmpty()||repsH<1){
-                    reps.setError("Not valid");
-                    reps.setText("1");
+                if(repsF.isEmpty()){
+                    reps.setError("set to 0");
+                    reps.setText("0");
+                    repsF="0";
+                    reps.requestFocus();
+                    return;
+                }
+                if(setsH<1){
+                    sets.setError("Negative value");
+                    sets.setText("0");
+                    setsF="0";
+                    sets.requestFocus();
+                    return;
+                }
+                if(repsH<1){
+                    reps.setError("Negative value");
+                    reps.setText("0");
                     repsF="0";
                     reps.requestFocus();
                     return;

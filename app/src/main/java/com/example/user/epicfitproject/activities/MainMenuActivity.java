@@ -14,8 +14,6 @@ public class MainMenuActivity extends AppCompatActivity {
     private  Button activities;
     private Button activeGoal;
     private Button progress;
-
-    private ActualExercise e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         progress = (Button) findViewById(R.id.button_progress_menu);
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +51,5 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        // Intent intent = new Intent(MainMenuActivity.this,ActiveGoals.class);
-            //otivam a goals tam veche she suzdam celta i she q zapisha i pokaja
-
-
     }
 }

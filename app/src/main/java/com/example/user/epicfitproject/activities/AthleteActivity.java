@@ -3,37 +3,28 @@ package com.example.user.epicfitproject.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.fragments.ChangeUsernameFragment;
 import com.example.user.epicfitproject.model.user.UsersManager;
 import com.example.user.epicfitproject.model.athlete.Athlete;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class AthleteActivity extends AppCompatActivity implements ChangeUsernameFragment.IUsernameChanged {
+public class AthleteActivity extends AppCompatActivity  {
     private TextView heading;
     private TextView username;
     private TextView gender;
@@ -51,11 +42,8 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
     private NumberPicker pickHeight;
     private NumberPicker pickWeight;
     private String [] heights;
-    private static final int PICK_IMAGE =55;
     private Athlete athlete;
     private static final int RESULT_GOAL_TIME_ADDED=22;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +53,11 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
         gender = (TextView) findViewById(R.id.genderText);
         gender.setFocusable(false);
         gender.setClickable(false);
-
         heading = (TextView) findViewById(R.id.heading);
         heading.setFocusable(false);
         heading.setClickable(false);
         doubleValues=new ArrayList<>();
         username = (TextView) findViewById(R.id.usernameText);
-
         SharedPreferences preffs = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
         String loggedUserEmail = preffs.getString("loggedUser", "nope");
         if(!loggedUserEmail.equals("nope") || UsersManager.getInstance(this).existsUser(loggedUserEmail)){
@@ -80,10 +66,7 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
         SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
         String athleteH = preferences.getString("athlete","nope");
         if(!athleteH.equals("nope")){
-            //Ako e lognat mu zapazi neshtata
-            //genderSwitch.setChecked();
             String json = this.getSharedPreferences("athlete", Context.MODE_PRIVATE).getString("athlete", "nope");
-
             JSONObject obj = null;
             try {
                 obj = new JSONObject(json);
@@ -95,24 +78,12 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
                     genderSwitch.setChecked(true);
                     gender.setText("Female");
                 }
-                //TODO tuk oshte da se promenqt vsichki neshta pikerite da im se sloji ot zapamet
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
-
-
-
-
-
-
-
         }
-
-
-
         username.setFocusable(false);
         username.setClickable(false);
-
         BMIinfo = (TextView) findViewById(R.id.BMIcalculatedText);
         height = (TextView) findViewById(R.id.heightText);
         height.setFocusable(false);
@@ -124,16 +95,9 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
         generateBMI.setFocusable(false);
         generateBMI.setClickable(false);
         logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Tuk maha tikcheto na Logina i trqbva pak da se vpishesh ....
-            }
-        });
         addGoal = (Button) findViewById(R.id.addGoalButton);
         profilePicture = (ImageView) findViewById(R.id.profilePicture);
         profilePicture.setBackgroundResource(R.drawable.fit);
-
         genderSwitch= (Switch) findViewById(R.id.genderSwitch);
         genderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -169,7 +133,6 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
             }
         });
 
-
         pickHeight = (NumberPicker) findViewById(R.id.heightPicker);
         Double helper = new Double(1);
         for(int i = 1;i<=257;i++){
@@ -192,7 +155,8 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
         pickWeight = (NumberPicker) findViewById(R.id.weightPicker);
         doubleValues.clear();
         helper=new Double(20);
-        for(int i = 20;i<=5000;i++){
+        //promenig tuk
+        for(int i = 20;i<=3000;i++){
             doubleValues.add(helper);
             helper+=0.1;
         }
@@ -213,7 +177,6 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
             public void onClick(View view) {
                 NumberPicker nb= (NumberPicker) view;
                 if(nb.isSelected()){
-                    //TODO when numberpicker is touched BMI field should hide ????
                     BMIinfo.setText(null);
                     BMIinfo.setVisibility(View.INVISIBLE);
                     BMISwitch.setChecked(false);
@@ -230,14 +193,11 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
                 preferences.edit().remove("loggedUser").commit();
                 startActivity(intent);
                 finish();
-
             }
         });
         addGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 String nameAthlete  = username.getText().toString();
                 String gender ;
                 if(genderSwitch.isChecked()){
@@ -251,16 +211,11 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
                 String weightH=weights[indexWeight];
                 double weightD= Double.parseDouble(weightH);
                 double heightD = Double.parseDouble(heightH);
-
-               athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
+                athlete = new Athlete(R.mipmap.ic_launcher,heightD,weightD,gender);
                 SharedPreferences preferences = getSharedPreferences("athleteLogged", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 JSONObject obj = new JSONObject();
                 try {
-                    //iskam da svurja tekushtiq lognat potrebitel sus suzdadeniq atlet i ne staa
-                    //String email = getIntent().getDataString();
-
-                    //obj.put("email",email);
                     obj.put("picture",athlete.getPicture());
                     obj.put("height",athlete.getHeight());
                     obj.put("weight",athlete.getWeight());
@@ -268,56 +223,29 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 String value = obj.toString();
                 Log.e("JSON",value);
-
                 editor.putString("athlete",value);
                 editor.commit();
-
                 Intent intent = new Intent(AthleteActivity.this, GoalActivity.class);
                 startActivityForResult(intent,RESULT_GOAL_TIME_ADDED);
             }
         });
-
     }
+
     private  static double calculatorForBMI(Double height, Double weight){
         return weight/(height*height);
     }
-    private void openGallery() {
-        Intent gallery =
-                new Intent();
-        gallery.addCategory(Intent. ACTION_GET_CONTENT);
-        startActivityForResult(gallery, PICK_IMAGE);
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == PICK_IMAGE) {
-            Uri uri = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                // Log.d(TAG, String.valueOf(bitmap));
-
-                ImageView imageView = (ImageView) findViewById(R.id.profilePicture);
-                imageView.setImageBitmap(bitmap);
-                //TODO zapazi s novata kartinka
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (requestCode==RESULT_GOAL_TIME_ADDED){
+            if(resultCode==RESULT_GOAL_TIME_ADDED){
+                finish();
             }
         }
-
-        if (resultCode==RESULT_GOAL_TIME_ADDED){
-            finish();
-        }
     }
 
-    @Override
-    public void changedUsername(String name) {
-        username.setText(name);
-    }
+
 }

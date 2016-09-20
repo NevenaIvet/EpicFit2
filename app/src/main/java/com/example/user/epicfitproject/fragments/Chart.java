@@ -86,7 +86,13 @@ public class Chart extends Fragment {
                 doneData.setDotsColor(Color.BLUE);
                 goal.setColor(Color.RED);
                 goal.setDotsColor(Color.RED);
-                goal.setSmooth(true);
+
+
+                float[] dashesForGoalLine = new float[4];
+                for (int i = 0;i<dashesForGoalLine.length;i++){
+                    dashesForGoalLine[i]= (float) 5.5;
+                }
+                goal.setDashed(dashesForGoalLine);
                 goal.beginAt(0);
                 goal.endAt(exercises.size());
                 doneData.setDotsStrokeColor(Color.BLUE);

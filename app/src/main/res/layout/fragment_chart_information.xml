@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.user.epicfitproject.ChartInformation">
+    tools:context="com.example.user.epicfitproject.fragments.ChartInformation">
 
 
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:textColor="@color/greenOne"
@@ -23,7 +23,6 @@
             android:layout_weight="1"
             android:layout_height="10dp"
             android:layout_gravity="bottom"
-            android:text="question"
             android:background="@drawable/line_blue"
             />
     </LinearLayout>
@@ -33,7 +32,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:textColor="@color/greenOne"
@@ -43,7 +42,7 @@
             android:layout_weight="1"
             android:layout_height="10dp"
             android:layout_gravity="bottom"
-            android:text="question"
+
             android:background="@drawable/line_red"
             />
     </LinearLayout>

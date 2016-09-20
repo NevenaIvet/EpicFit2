@@ -1,6 +1,8 @@
 package com.example.user.epicfitproject.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final int RESULT_REG_SUCCESSFULL = 14;
+
     private EditText username;
     private EditText password;
     private EditText confirmPass;
@@ -32,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPass = (EditText) findViewById(R.id.editText_confirm);
         email = (EditText) findViewById(R.id.editText_email);
         create = (Button) findViewById(R.id.button_createProfile);
-
+        SharedPreferences sharedPreferences = getSharedPreferences("CurrentlyLogged", Context.MODE_PRIVATE);
+        sharedPreferences.edit().remove("loggedUser").commit();
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,17 +88,17 @@ public class RegisterActivity extends AppCompatActivity {
                     username.requestFocus();
                     Log.e("F", "Returns existing user");
                     return;
-
                 }
 
                 UsersManager.getInstance(RegisterActivity.this).regUser(RegisterActivity.this, userName, passWord, eMail);
                 Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
+                setResult(14);
+                Intent intent = new Intent(RegisterActivity.this,LogInActivity.class);
                 intent.putExtra("username", username.getText().toString());
                 intent.putExtra("password", password.getText().toString());
-                setResult(RESULT_REG_SUCCESSFULL, intent);
+                intent.putExtra("email",email.getText().toString());
+                startActivity(intent);
                 finish();
-
             }
         });
     }
@@ -109,4 +112,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         return false;
     }
+
+
 }

@@ -19,8 +19,6 @@ public class ActivitiesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
-
-
         upperBody = (Button) findViewById(R.id.button_upper_body);
         lowerBody = (Button) findViewById(R.id.button_lower_body);
 
@@ -30,7 +28,6 @@ public class ActivitiesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Button button = (Button) view;
-
                 Intent intent = new Intent(ActivitiesActivity.this,ListOFExercisesActivity.class);
                 intent.putExtra("idButton",button.getId());
                 startActivity(intent);
@@ -40,6 +37,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         lowerBody.setOnClickListener(onClickListener);
         cardio.setOnClickListener(onClickListener);
         hiit.setOnClickListener(onClickListener);
+        finish();
 
     }
 }

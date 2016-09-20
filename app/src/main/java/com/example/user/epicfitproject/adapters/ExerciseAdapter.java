@@ -33,7 +33,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
             name = (TextView) view.findViewById(R.id.name_exercise);
             information = (TextView) view.findViewById(R.id.info_exercise);
             listRow = (LinearLayout) view.findViewById(R.id.list_row);
-
         }
     }
 
@@ -50,15 +49,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
 
         final Exercise exercise = exercises.get(position);
         holder.name.setText(exercise.getName());
-      //  holder.information.setText(exercise.getInformation());
         holder.listRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-               // Toast.makeText(activity, "clicked "+ holder.name.getText().toString(), Toast.LENGTH_SHORT).show();
-                //ne e taka she si predavam obekta
               Intent intent = new Intent(activity,ExerciseActivity.class);
-
                  intent.putExtra("exercise",exercise);
                 activity.startActivity(intent);
             }

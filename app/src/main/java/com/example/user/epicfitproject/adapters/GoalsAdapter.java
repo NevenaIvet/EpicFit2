@@ -14,6 +14,10 @@ import android.widget.Toast;
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.model.goal.Goal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,8 +39,6 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
             super(itemView);
             nameOfGoal = (TextView) itemView.findViewById(R.id.active_goal);
             listRow = (LinearLayout) itemView.findViewById(R.id.layout_active_goal);
-            Log.e("TAG","suzdava se goalviewholder ");
-
         }
     }
     @Override
@@ -47,14 +49,16 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
     }
 
     @Override
-    public void onBindViewHolder(GoalViewHolder holder, int position) {
+    public void onBindViewHolder(final GoalViewHolder holder, int position) {
         final Goal goal = goals.get(position);
-       //TODO
-        holder.nameOfGoal.setText("Goal for period "+goal.getStartDate()+" to "+goal.getEndDate());
+        String startDateH=goal.getStartDate();
+        String endDateH = goal.getEndDate();
+
+        holder.nameOfGoal.setText("Active goal "+startDateH+" to "+endDateH);
         holder.listRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity,"open to see",Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,"Your current active goal "+holder.getAdapterPosition(),Toast.LENGTH_SHORT).show();
             }
         });
     }
