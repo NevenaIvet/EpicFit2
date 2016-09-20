@@ -56,41 +56,67 @@ public class RepetitionsSets extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String setsF=sets.getText().toString();
-                int setsH=Integer.parseInt(setsF);
-                String repsF=reps.getText().toString();
-                int repsH=Integer.parseInt(repsF);
-                if(setsF.isEmpty()){
-                    sets.setError("set to 0");
-                    sets.setText("0");
-                    setsF="0";
+                final  String setsH = sets.getText().toString().trim();
+                final String repsH = reps.getText().toString().trim();
+                if(setsH.isEmpty()){
+                    sets.setError("Required");
                     sets.requestFocus();
                     return;
                 }
-                if(repsF.isEmpty()){
-                    reps.setError("set to 0");
-                    reps.setText("0");
-                    repsF="0";
+                if(repsH.isEmpty()){
+                    reps.setError("Required");
                     reps.requestFocus();
                     return;
                 }
-                if(setsH<1){
-                    sets.setError("Negative value");
-                    sets.setText("0");
-                    setsF="0";
-                    sets.requestFocus();
-                    return;
-                }
-                if(repsH<1){
-                    reps.setError("Negative value");
-                    reps.setText("0");
-                    repsF="0";
-                    reps.requestFocus();
-                    return;
+                if(!(setsH.isEmpty()&&repsH.isEmpty())){
+                    //Commas are forbiden in xml but still
+                    if(!((setsH.contains(".")&&repsH.contains(".")&&setsH.contains(",")&&repsH.contains(",")))) {
+                        int repHelper=0 ;
+                        int setHelper=0;
+                        try{
+                            repHelper = Integer.parseInt(repsH);
+                        }catch (NumberFormatException e){
+                            repHelper=0;
+                            reps.setText(null);
+                            reps.setError("Only integers");
+                            reps.requestFocus();
+                            return;
+                        }
+                        try{
+                            setHelper = Integer.parseInt(setsH);
+                        }catch (NumberFormatException e){
+                            setHelper=0;
+                            sets.setText("0");
+                            sets.setError("Only integers");
+                            sets.requestFocus();
+                            return;
+                        }
+                        if (repHelper < 0) {
+                            sets.setError("Negative values are not acceptable");
+                            sets.setText("0");
+                            sets.requestFocus();
+                            return;
+                        }
+                        if (setHelper < 0) {
+                            reps.setError("Negative values are not acceptable");
+                            reps.setText(null);
+                            reps.requestFocus();
+                            return;
+                        }
+                        if (repHelper == 0 && setHelper > 0) {
+                            reps.setError("Repeats are 0");
+                            reps.setText(null);
+                            reps.requestFocus();
+                            return;
+                        }
+
+                        activity.onNextClicked(setHelper,repHelper);
+
+                        dismiss();
+                    }
                 }
 
-                activity.onNextClicked(setsH,repsH);
-                dismiss();
+
             }
 
         });
