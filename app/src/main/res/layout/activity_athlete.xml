@@ -3,241 +3,226 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/darkbg"
+    android:background="@drawable/weights2"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
 
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".UI.AthleteActivity">
+    tools:context=".activities.AthleteActivity">
 
 
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-<LinearLayout
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_margin="10dp"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ImageButton
-        android:layout_width="140dp"
-        android:layout_weight="1"
         android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-        android:id="@+id/profilePicture"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="left"
-/>
-</LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="3"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/profilePicture"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="left"
+    />
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logged:"
+                    android:textColor="@color/greenOne"
+                    android:id="@+id/heading"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/usernameText"
+                        android:gravity="center"
+                        android:hint="here should be username"
+                        android:textColorHint="@color/greenOne"
+                        android:textColor="@color/greenFive"
+                        android:textSize="25sp"
+                        android:layout_weight="6"
+                        android:text="Username"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="Logout"
+                android:id="@+id/logout"
+                android:gravity="center"
+                android:background="@drawable/rectangle"
+                android:textColor="@color/greenOne"
+                android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </TableRow>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:textColor="@color/greenOne"
+                android:layout_height="match_parent"
+                android:id="@+id/genderText"
+                android:text="Male"/>
+            <Switch
+                android:layout_width="0dp"
+                android:id="@+id/genderSwitch"
+                android:textColor="@color/greenOne"
+                android:layout_height="match_parent"
+                android:textOn="F"
+                android:textOff="M"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textSize="25sp"
+
+                android:layout_gravity="center"
+                android:textColor="@color/greenOne"
+                android:textStyle="bold"
+                android:id="@+id/heightText"
+                android:layout_height="match_parent"
+                android:text="Height"/>
+            <NumberPicker
+                android:id="@+id/heightPicker"
+                android:solidColor="@color/greenFive"
+                android:layout_width="wrap_content"
+                android:background="@color/greenOne"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_gravity="right">
+
+
+            </NumberPicker>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/greenOne"
+                android:id="@+id/weightText"
+                android:layout_height="match_parent"
+                android:text="Weight"/>
+            <NumberPicker
+                android:id="@+id/weightPicker"
+                android:solidColor="@color/greenFive"
+                android:layout_width="wrap_content"
+                android:background="@color/greenOne"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_gravity="right">
+            </NumberPicker>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/greenOne"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:id="@+id/generateBMIText"
+                android:gravity="left"
+                android:text="Generate BMI"/>
+            <Switch
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/generateBMISwitch"
+                android:textOn="Y"
+                android:textOff="N"
+                android:textColor="@color/greenOne"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp"
-                android:text="Logged as:"
+                android:id="@+id/BMIcalculatedText"
                 android:textColor="@color/greenOne"
-                android:id="@+id/heading"
-
-                android:textStyle="bold"
-                android:textSize="35sp"
-
-                android:gravity="center"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/usernameText"
-                    android:gravity="center"
-
-                    android:hint="here should be username"
-                    android:textColorHint="@color/greenFive"
-                    android:textColor="@color/greenFive"
-                    android:textSize="15sp"
-                    android:layout_weight="6"
-                    android:text="Username"/>
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="20dp"
-                    android:background="@drawable/pencil"
-                    android:id="@+id/changeUsernameButton"
-                    />
+                android:textSize="20sp"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                />
             </LinearLayout>
-        <Button
+        <LinearLayout
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
-            android:text="Logout"
-            android:id="@+id/logout"
-            android:gravity="center"
-            android:background="@drawable/rectangle"
-            android:textColor="@color/greenOne"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+          <Button
+              android:layout_width="match_parent"
+              android:layout_weight="1"
+              android:background="@drawable/rectangle"
+              android:textColor="@color/greenOne"
+              android:layout_height="match_parent"
+              android:id="@+id/addGoalButton"
+              android:text="+Goal"/>
+
+
 
         </LinearLayout>
-
-    </TableRow>
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <TextView
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/greenOne"
-            android:layout_height="match_parent"
-            android:id="@+id/genderText"
-            android:text="Male"/>
-        <Switch
-            android:layout_width="0dp"
-            android:id="@+id/genderSwitch"
-            android:textColor="@color/greenOne"
-            android:layout_height="match_parent"
-            android:textOn="F"
-            android:textOff="M"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:textSize="20sp"
-            android:textColor="@color/greenOne"
-            android:id="@+id/heightText"
-            android:layout_height="match_parent"
-            android:text="Height"/>
-        <NumberPicker
-            android:id="@+id/heightPicker"
-            android:solidColor="@color/greenFive"
-            android:layout_width="wrap_content"
-            android:background="@color/greenOne"
-            android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants"
-            android:layout_gravity="right">
-
-
-        </NumberPicker>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:textSize="20sp"
-            android:textColor="@color/greenOne"
-            android:id="@+id/weightText"
-            android:layout_height="match_parent"
-            android:text="Weight"/>
-        <NumberPicker
-            android:id="@+id/weightPicker"
-            android:solidColor="@color/greenFive"
-            android:layout_width="wrap_content"
-
-            android:background="@color/greenOne"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="blocksDescendants"
-            android:layout_gravity="right">
-
-        </NumberPicker>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:textColor="@color/greenOne"
-            android:textSize="20sp"
-            android:id="@+id/generateBMIText"
-            android:text="Generate BMI"/>
-        <Switch
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/generateBMISwitch"
-            android:textOn="Y"
-            android:textOff="N"
-            android:textColor="@color/greenFive"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:id="@+id/BMIcalculatedText"
-            android:textColor="@color/greenOne"
-            android:textSize="20sp"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            />
-
         </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-      <Button
-          android:layout_width="match_parent"
-          android:layout_weight="1"
-          android:background="@drawable/rectangle"
-          android:textColor="@color/greenOne"
-          android:layout_height="match_parent"
-          android:id="@+id/addGoalButton"
-          android:text="+Goal"/>
-
-
-
-    </LinearLayout>
-    </LinearLayout>
 
 </LinearLayout>

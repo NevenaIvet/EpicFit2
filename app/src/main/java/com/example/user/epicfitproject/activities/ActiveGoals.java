@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +32,7 @@ public class ActiveGoals extends AppCompatActivity {
     private List<ActualExercise> exercises;
     private Button newGoalButton;
     private static  int ADDED_NEW_GOAL_OK;
+    private Button delete;
 
 
     @Override
@@ -39,6 +40,20 @@ public class ActiveGoals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_goals);
         newGoalButton= (Button) findViewById(R.id.button_add_new_goal);
+        delete= (Button) findViewById(R.id.delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences preferences = getSharedPreferences("activeGoal", Context.MODE_PRIVATE);
+                preferences.edit().remove("goal").commit();
+                SharedPreferences s = getSharedPreferences("exercisesGoal",Context.MODE_PRIVATE);
+                s.edit().remove("exercisesInGoal").commit();
+                Log.e("TAG","iztrito e vsichko");
+                //mai fill
+                fillWithData();
+
+            }
+        });
         newGoalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

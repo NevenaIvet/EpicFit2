@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.UI.ExerciseActivity;
+import com.example.user.epicfitproject.activities.ExerciseActivity;
 import com.example.user.epicfitproject.model.exercise.Exercise;
 
 import java.util.List;

@@ -1,20 +1,20 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.user.epicfitproject.Chart;
+import com.example.user.epicfitproject.ChartInformation;
+import com.example.user.epicfitproject.fragments.Chart;
 import com.example.user.epicfitproject.R;
 import com.example.user.epicfitproject.fragments.UserEntersDataExercise;
 import com.example.user.epicfitproject.fragments.ExerciseFragment;
@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Start extends AppCompatActivity implements ExerciseFragment.Communicator,StartAndProgress.IChoice,UserEntersDataExercise.IUserInteract,Chart.IShowChart{
+public class Start extends AppCompatActivity implements ExerciseFragment.Communicator,StartAndProgress.IChoice,UserEntersDataExercise.IUserInteract,Chart.IShowChart {
 
     private Goal goal;
    private  static  int sizeOfList;
@@ -75,12 +75,15 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
     public void chosen(View v) {
         switch (v.getId()){
             case R.id.begin_workout:
-                Fragment start = new ExerciseFragment();
+                SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
+                sp.edit().remove("done").commit();
+                Log.e("TAG","iztriti sa uprajneniqta ot prednata trenirovka");
+                fragment = new ExerciseFragment();
                 data= new Bundle();
                 data.putParcelable("exercise",exercisesToDo.get(position));
-                start.setArguments(data);
+                fragment.setArguments(data);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.replace_here, start);
+                ft.replace(R.id.replace_here, fragment);
                 ft.commit();
                 FragmentTransaction tr= getSupportFragmentManager().beginTransaction();
                 fragment2 = new UserEntersDataExercise();
@@ -90,13 +93,18 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             case R.id.progress_button:
                 String json = getSharedPreferences("doneExercises",Context.MODE_PRIVATE).getString("done","nope");
                 if(!json.equals("nope")){
-                    Fragment f = new Chart();
+
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    Start.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    fragment = new Chart();
                     FragmentTransaction fp = getSupportFragmentManager().beginTransaction();
-                    fp.replace(R.id.replace_here,f);
+                    fp.replace(R.id.replace_here,fragment);
                     fp.commit();
                 }else{
                     Toast.makeText(Start.this,"Can't show progress no exercises done yet",Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                break;
         }
     }
 
@@ -118,7 +126,6 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             getSupportFragmentManager().beginTransaction().remove(fragment2).commit();
             finish();
 
-
         }
             SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
@@ -135,22 +142,18 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                     arr.put(o);
                 }
             }catch(JSONException e) {
-                Log.e("ivet", e.getMessage());
+                Log.e("TAG", e.getMessage());
             }
             String key = "done";
             String value = arr.toString();
-            Log.e("ivet", "NAPRAVENI UPRAJNENIQ ZA TRENIROVKA "+value);
+            Log.e("TAG", "NAPRAVENI UPRAJNENIQ ZA TRENIROVKA "+value);
             editor.putString(key,value);
             editor.commit();
         }
 
 
-
-
     @Override
     public void dataEntered(String s1, String s2) {
-        //sravni s reps i sets na taq poziciq na koqto beshe izvikan fragmenta
-        //tuk she e changeWithNext
       if(!(s1==null||s2==null)){
           exercisesDone.get(position).setRepetitions(Integer.parseInt(s2));
           exercisesDone.get(position).setSets(Integer.parseInt(s1));
@@ -159,8 +162,13 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
       }
     }
 
+
     @Override
-    public void showChart() {
-        //
+    public void showInfo() {
+        fragment2=new ChartInformation();
+        FragmentTransaction fp = getSupportFragmentManager().beginTransaction();
+        fp.replace(R.id.second_fragment_here,fragment2);
+        fp.commit();
+
     }
 }

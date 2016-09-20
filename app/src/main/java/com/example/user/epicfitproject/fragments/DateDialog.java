@@ -1,13 +1,11 @@
-package com.example.user.epicfitproject;
+package com.example.user.epicfitproject.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.widget.DatePicker;
 
-import com.example.user.epicfitproject.UI.GoalActivity;
+import com.example.user.epicfitproject.activities.GoalActivity;
 
 import java.util.Calendar;
 

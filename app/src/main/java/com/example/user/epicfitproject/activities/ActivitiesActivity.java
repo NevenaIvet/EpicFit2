@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.model.exercise.ActualExercise;
-
-import java.util.HashMap;
 
 public class ActivitiesActivity extends AppCompatActivity {
     private Button upperBody;

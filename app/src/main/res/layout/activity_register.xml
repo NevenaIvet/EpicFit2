@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/darkbg"
+    android:background="@drawable/woman"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
 
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".UI.RegisterActivity">
+    tools:context=".activities.RegisterActivity">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="0dp"
@@ -21,15 +21,15 @@
     android:textAllCaps="true"
 
     android:textSize="35sp"
-    android:textColor="@color/greenFive"/>
+    android:textColor="@color/greenOne"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:inputType="textPersonName"
             android:hint="username"
-            android:textColor="@color/greenThree"
-            android:textColorHint="@color/greenThree"
+            android:textColor="@color/greenOne"
+            android:textColorHint="@color/greenOne"
             android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:ems="10"
@@ -44,8 +44,8 @@
             android:layout_marginTop="5dp"
             android:textSize="20sp"
             android:hint="password"
-            android:textColor="@color/greenThree"
-            android:textColorHint="@color/greenThree"
+            android:textColor="@color/greenOne"
+            android:textColorHint="@color/greenOne"
             android:ems="10"
             android:layout_weight="1"
             android:id="@+id/editText_password"
@@ -56,8 +56,8 @@
             android:layout_height="0dp"
             android:inputType="textPassword"
             android:layout_marginTop="5dp"
-            android:textColor="@color/greenThree"
-            android:textColorHint="@color/greenThree"
+            android:textColor="@color/greenOne"
+            android:textColorHint="@color/greenOne"
             android:textSize="20sp"
             android:hint="confirm password"
             android:ems="10"
@@ -71,7 +71,7 @@
             android:inputType="textEmailAddress"
             android:textSize="20sp"
             android:ems="10"
-            android:textColor="@color/greenThree"
+            android:textColor="@color/greenOne"
             android:textColorHint="@color/greenThree"
             android:layout_weight="1"
             android:layout_marginTop="5dp"
@@ -85,8 +85,9 @@
             android:layout_weight="1"
             android:text="Create"
             android:id="@+id/button_createProfile"
+            android:textColor="@color/greenOne"
             android:layout_marginBottom="5dp"
-           android:background="@color/greenOne" />
+           android:background="@drawable/rectangle" />
 
 
 </LinearLayout>

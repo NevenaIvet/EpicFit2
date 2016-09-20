@@ -35,7 +35,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
             super(itemView);
             nameOfGoal = (TextView) itemView.findViewById(R.id.active_goal);
             listRow = (LinearLayout) itemView.findViewById(R.id.layout_active_goal);
-            Log.e("ivet","suzdava se goalviewholder ");
+            Log.e("TAG","suzdava se goalviewholder ");
 
         }
     }

@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/darkbg"
+    android:background="@drawable/background"
     app:layout_behavior="appbar_scrolling_view_behavior"
     tools:showIn="@layout/exercises_list_row"
     android:orientation="vertical"
-    tools:context=".UI.ListOFExercisesActivity">
+    tools:context=".activities.ListOFExercisesActivity">
 
     <TextView
         android:layout_width="match_parent"

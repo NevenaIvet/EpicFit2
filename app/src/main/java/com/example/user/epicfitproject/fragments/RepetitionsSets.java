@@ -1,7 +1,6 @@
 package com.example.user.epicfitproject.fragments;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -14,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.user.epicfitproject.R;
-import com.example.user.epicfitproject.UI.ExerciseActivity;
-import com.example.user.epicfitproject.model.exercise.ExerciseManager;
 
 
 /**
@@ -59,9 +56,6 @@ public class RepetitionsSets extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
 
                 String setsF=sets.getText().toString();
                 int setsH=Integer.parseInt(setsF);

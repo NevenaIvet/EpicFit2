@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,8 +44,6 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
     private Button logout;
     private Button addGoal;
     private ImageView profilePicture;
-    private ImageButton changePenUsernameButton;
-
     private Switch genderSwitch;
     private Switch BMISwitch;
     private ArrayList<Double> doubleValues;
@@ -135,32 +131,9 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
             }
         });
         addGoal = (Button) findViewById(R.id.addGoalButton);
-
-        changePenUsernameButton = (ImageButton) findViewById(R.id.changeUsernameButton);
-
-        changePenUsernameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              // UsersManager.getInstance(AthleteActivity.this).getUser(username.getText().toString()).setUsername("jdkfhgkfdhk");
-                //TODO see this and fix
-
-
-
-                DialogFragment fragment = new ChangeUsernameFragment();
-                FragmentManager fm = getSupportFragmentManager();
-                fragment.show(fm, "changeUsernameFragment");
-
-               //TODO add dialog fragment for change username
-            }
-        });
         profilePicture = (ImageView) findViewById(R.id.profilePicture);
         profilePicture.setBackgroundResource(R.drawable.fit);
-        profilePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGallery();
-            }
-        });
+
         genderSwitch= (Switch) findViewById(R.id.genderSwitch);
         genderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -191,7 +164,7 @@ public class AthleteActivity extends AppCompatActivity implements ChangeUsername
                     BMIinfo.setVisibility(View.VISIBLE);
 
                 }else{
-                    BMIinfo.setVisibility(View.INVISIBLE);
+                    BMIinfo.setVisibility(View.GONE);
                 }
             }
         });

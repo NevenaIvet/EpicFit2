@@ -1,4 +1,4 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

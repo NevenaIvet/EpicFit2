@@ -1,11 +1,8 @@
-package com.example.user.epicfitproject.UI;
+package com.example.user.epicfitproject.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.epicfitproject.DateDialog;
-import com.example.user.epicfitproject.fragments.NavigationMSG;
+import com.example.user.epicfitproject.fragments.DateDialog;
 import com.example.user.epicfitproject.R;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,9 +25,10 @@ import java.util.Date;
 public class GoalActivity extends AppCompatActivity  {
     private Button start;
     private Button next;
-    LinearLayout l ;
     private Button end;
     private TextView startDateTV;
+    private Date startDateObj;
+    private Date endDateObj;
     private TextView endDateTV;
     private static  final int GOAL_UPDATED=55;
     private static  final int EXERCISES_ADDED = 66;
@@ -44,7 +40,6 @@ public class GoalActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_goal);
         startDateTV = (TextView) findViewById(R.id.dates_save_field);
         endDateTV = (TextView) findViewById(R.id.dates_save_field2);
-        l = (LinearLayout) findViewById(R.id.placeforfragment);
         start= (Button) findViewById(R.id.button_from);
         end = (Button) findViewById(R.id.button_to);
         next = (Button) findViewById(R.id.button_addExercise);
@@ -56,8 +51,6 @@ public class GoalActivity extends AppCompatActivity  {
                 bundle.putString("type", "start");
                 d.setArguments(bundle);
                 d.show(GoalActivity.this.getFragmentManager(),"startDate");
-
-
             }
         });
         end.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +65,16 @@ public class GoalActivity extends AppCompatActivity  {
         });
 
 
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(startDateObj.after(endDateObj)||endDateObj.before(Calendar.getInstance().getTime())||startDateObj.before(Calendar.getInstance().getTime())){
+                    startDateTV.setText(null);
+                    endDateTV.setText(null);
+                    Toast.makeText(GoalActivity.this, "Incompatible dates", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 setResult(22);
                 Intent intent = new Intent(GoalActivity.this, ActivitiesActivity.class);
                 intent.putExtra("endDate",endDateTV.getText().toString());
@@ -90,21 +89,21 @@ public class GoalActivity extends AppCompatActivity  {
                     e.printStackTrace();
                 }
                 editor.putString("goal",obj.toString());
-                Log.e("ivet",obj.toString());
+                Log.e("TAG",obj.toString());
                 editor.commit();
                 startActivityForResult(intent,66);
-
             }
         });
-
 
     }
     public void dateSet(String type, Date date) {
         if(type.equals("start")){
+            startDateObj=date;
             startDateTV.setText(date.toString());
         }
         else
         if(type.equals("end")){
+            endDateObj=date;
             endDateTV.setText(date.toString());
         }
     }
