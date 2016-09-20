@@ -107,6 +107,7 @@ public class Chart extends Fragment {
         }
         goalData.setDashed(dashesForGoalLine);
         goalData.beginAt(0);
+        //tuk da ne e exercise siz
         goalData.endAt(exercisesInGoal.size());
         chart.addData(goalData);
         chart.setYAxis(false);

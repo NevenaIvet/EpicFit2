@@ -26,7 +26,7 @@ public class DateDialog extends  android.app.DialogFragment implements DatePicke
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        // Create a new instance of DatePickerDialog and return it
+
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
@@ -36,6 +36,7 @@ public class DateDialog extends  android.app.DialogFragment implements DatePicke
         cal.set(Calendar.YEAR, i);
         cal.set(Calendar.MONTH, i1);
         cal.set(Calendar.DAY_OF_MONTH, i2);
+        ((GoalActivity)getActivity()).dateSet(getArguments().getString("type"), cal.getTime());
 
     }
 

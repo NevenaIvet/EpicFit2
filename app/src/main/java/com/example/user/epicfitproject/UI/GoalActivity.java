@@ -51,20 +51,23 @@ public class GoalActivity extends AppCompatActivity  {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                DateDialog d = new DateDialog();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("type", "start");
-//                d.setArguments(bundle);
-//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.add(R.id.placeforfragment, new DateDialog());
-//                fragmentTransaction.commit();
+                DateDialog d = new DateDialog();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "start");
+                d.setArguments(bundle);
+                d.show(GoalActivity.this.getFragmentManager(),"startDate");
+
 
             }
         });
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DateDialog dialog = new DateDialog();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "end");
+                dialog.setArguments(bundle);
+                dialog.show(getFragmentManager(), "endDate");
             }
         });
 
@@ -96,7 +99,15 @@ public class GoalActivity extends AppCompatActivity  {
 
 
     }
-
+    public void dateSet(String type, Date date) {
+        if(type.equals("start")){
+            startDateTV.setText(date.toString());
+        }
+        else
+        if(type.equals("end")){
+            endDateTV.setText(date.toString());
+        }
+    }
 
 }
 
