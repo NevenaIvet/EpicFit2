@@ -58,7 +58,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
         holder.listRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity,"Your current active goal "+holder.getAdapterPosition(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,"Your current active goal "+(holder.getAdapterPosition()+1),Toast.LENGTH_SHORT).show();
             }
         });
     }

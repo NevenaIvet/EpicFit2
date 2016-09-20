@@ -99,6 +99,8 @@ public class ActiveGoals extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==ADDED_NEW_GOAL_OK){
             if(resultCode==ADDED_NEW_GOAL_OK){
+                SharedPreferences s = getSharedPreferences("exercisesGoal",Context.MODE_PRIVATE);
+                s.edit().remove("exercisesInGoal").commit();
                recreate();
             }
         }

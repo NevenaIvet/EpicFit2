@@ -60,7 +60,8 @@ public class UserEntersDataExercise extends Fragment {
                     return;
                 }
                 if(!(setsH.isEmpty()&&repsH.isEmpty())){
-                    if(!((setsH.contains(".")&&repsH.contains(".")))) {
+                    //Commas are forbiden in xml but still
+                    if(!((setsH.contains(".")&&repsH.contains(".")&&setsH.contains(",")&&repsH.contains(",")))) {
                         int repHelper=0 ;
                         int setHelper=0;
                         try{
