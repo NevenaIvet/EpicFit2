@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.user.epicfitproject.R;
+import com.example.user.epicfitproject.activities.Start;
 
 
 public class UserEntersDataExercise extends Fragment {
@@ -57,32 +59,50 @@ public class UserEntersDataExercise extends Fragment {
                     reps.requestFocus();
                     return;
                 }
-
                 if(!(setsH.isEmpty()&&repsH.isEmpty())){
-                    int repHelper = Integer.parseInt(setsH);
-                    int setHelper = Integer.parseInt(repsH);
-                    if(repHelper<0){
-                        sets.setError("Negative values are not acceptable");
-                        sets.setText(null);
-                        sets.requestFocus();
-                        return;
-                    }
-                    if(setHelper<0){
-                        reps.setError("Negative values are not acceptable");
-                        reps.setText(null);
-                        reps.requestFocus();
+                    if(!((setsH.contains(".")&&repsH.contains(".")))) {
+                        int repHelper=0 ;
+                        int setHelper=0;
+                        try{
+                            repHelper = Integer.parseInt(repsH);
+                        }catch (NumberFormatException e){
+                            repHelper=0;
+                            reps.setText(null);
+                            reps.setError("Only integers");
+                            reps.requestFocus();
+                            return;
+                        }
+                        try{
+                            setHelper = Integer.parseInt(setsH);
+                        }catch (NumberFormatException e){
+                            setHelper=0;
+                            sets.setText("0");
+                            sets.setError("Only integers");
+                            sets.requestFocus();
+                            return;
+                        }
+                        if (repHelper < 0) {
+                            sets.setError("Negative values are not acceptable");
+                            sets.setText("0");
+                            sets.requestFocus();
+                            return;
+                        }
+                        if (setHelper < 0) {
+                            reps.setError("Negative values are not acceptable");
+                            reps.setText(null);
+                            reps.requestFocus();
+                            return;
+                        }
+                        if (repHelper == 0 && setHelper > 0) {
+                            reps.setError("Repeats are 0");
+                            reps.setText(null);
+                            reps.requestFocus();
+                            return;
+                        }
 
-                        return;
+                        activity.dataEntered(setsH, repsH);
+                       }
                     }
-                    if(repHelper==0&&setHelper>0){
-                        reps.setError("Repeats are 0");
-                        reps.setText(null);
-                        reps.requestFocus();
-                    }
-
-                    activity.dataEntered(setsH,repsH);
-                }
-
 
             }
         });

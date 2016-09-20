@@ -31,13 +31,14 @@ public class ActivitiesActivity extends AppCompatActivity {
                 Intent intent = new Intent(ActivitiesActivity.this,ListOFExercisesActivity.class);
                 intent.putExtra("idButton",button.getId());
                 startActivity(intent);
+                finish();
             }
         };
         upperBody.setOnClickListener(onClickListener);
         lowerBody.setOnClickListener(onClickListener);
         cardio.setOnClickListener(onClickListener);
         hiit.setOnClickListener(onClickListener);
-        finish();
+
 
     }
 }

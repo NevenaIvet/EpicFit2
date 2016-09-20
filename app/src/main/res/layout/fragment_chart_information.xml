@@ -17,7 +17,7 @@
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:textColor="@color/greenOne"
-            android:text="Blue line means this training"/>
+            android:text="Blue line - this training"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -36,7 +36,7 @@
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:textColor="@color/greenOne"
-            android:text="Red line means goal"/>
+            android:text="Red line - goal"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"

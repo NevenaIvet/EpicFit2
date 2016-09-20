@@ -94,9 +94,9 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
                 setResult(14);
                 Intent intent = new Intent(RegisterActivity.this,LogInActivity.class);
-                intent.putExtra("username", username.getText().toString());
-                intent.putExtra("password", password.getText().toString());
-                intent.putExtra("email",email.getText().toString());
+               // intent.putExtra("username", username.getText().toString());
+                intent.putExtra("password", passWord);
+                intent.putExtra("email",eMail);
                 startActivity(intent);
                 finish();
             }
