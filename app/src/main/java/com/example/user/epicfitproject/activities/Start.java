@@ -103,6 +103,7 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
                     FragmentTransaction fp = getSupportFragmentManager().beginTransaction();
                     fp.replace(R.id.replace_here,fragment);
                     fp.commit();
+
                 }else{
                     Toast.makeText(Start.this,"Can't show progress no exercises done yet",Toast.LENGTH_SHORT).show();
                     return;
@@ -131,6 +132,8 @@ public class Start extends AppCompatActivity implements ExerciseFragment.Communi
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
             getSupportFragmentManager().beginTransaction().remove(fragment2).commit();
             recreate();
+            //tuk
+            Toast.makeText(Start.this, "You can now see your progress", Toast.LENGTH_SHORT).show();
         }
             SharedPreferences sp = getSharedPreferences("doneExercises",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();

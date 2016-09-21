@@ -107,6 +107,7 @@ public class Chart extends Fragment {
                 paint.setColor(getResources().getColor(R.color.greenFive));
                 chart.setGrid(ChartView.GridType.HORIZONTAL, paint);
                 chart.setTypeface(Typeface.DEFAULT_BOLD);
+                Toast.makeText(getActivity(), "click on graph", Toast.LENGTH_SHORT).show();
                 chart.show();
                 chart.setClickable(true);
                 chart.setOnClickListener(new View.OnClickListener() {
